@@ -205,4 +205,4 @@ This project is licensed under the terms described in the [LICENSE](LICENSE) fil
 
 ---
 
-**Developed with care by [Diganta Mukherjee](https://github.com/digantamukherjee-19).**
+**(https://github.com/digantamukherjee-19).**
