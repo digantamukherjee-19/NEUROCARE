@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroCare – Different Minds. Endless Possibilities.</title>
+  <meta name="description" content="An inclusive, sensory-friendly platform supporting people with ADHD, dyslexia, autism, and neurodivergent learning needs.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Floating Reading Ruler overlay -->
+  <div id="reading-ruler" aria-hidden="true"></div>
+
+  <!-- Toast Container for Notifications -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- App Main Layout Container -->
+  <div id="app-container">
+
+    <!-- ==========================================================================
+         SIDEBAR NAVIGATION
+         ========================================================================== -->
+    <aside class="sidebar" id="app-sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <a href="#home" class="brand-logo" aria-label="NeuroCare Home">
+          <div class="brand-icon-box" aria-hidden="true">
+            <!-- Infinity Loop / Neurodiversity Brain SVG -->
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+              <path d="M18.6 6.62c-1.44 0-2.8.56-3.77 1.53L12 10.97l-2.83-2.82A5.333 5.333 0 0 0 5.4 6.62C2.42 6.62 0 9.04 0 12.02s2.42 5.4 5.4 5.4c1.44 0 2.8-.56 3.77-1.53L12 13.07l2.83 2.82c.97.97 2.33 1.53 3.77 1.53 2.98 0 5.4-2.42 5.4-5.4s-2.42-5.4-5.4-5.4zm-13.2 8.8c-1.87 0-3.4-1.53-3.4-3.4 0-1.87 1.53-3.4 3.4-3.4 1 0 1.9.41 2.55 1.06L10.59 12l-2.64 2.36c-.65.65-1.55 1.06-2.55 1.06zm13.2 0c-1 0-1.9-.41-2.55-1.06L13.41 12l2.64-2.36c.65-.65 1.55-1.06 2.55-1.06 1.87 0 3.4 1.53 3.4 3.4 0 1.87-1.53 3.4-3.4 3.4z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">NeuroCare</div>
+            <div class="brand-tagline">Inclusive Support</div>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Core Navigation</div>
+        <a href="#home" class="nav-link active" data-i18n="nav_home">
+          <span class="nav-icon">🏠</span> <span>Home</span>
+        </a>
+        <a href="#dashboard" class="nav-link" data-i18n="nav_dashboard">
+          <span class="nav-icon">📊</span> <span>My Dashboard</span>
+        </a>
+
+        <div class="nav-section-label">Specialized Support</div>
+        <a href="#adhd" class="nav-link" data-i18n="nav_adhd">
+          <span class="nav-icon">⚡</span> <span>ADHD Support</span>
+        </a>
+        <a href="#dyslexia" class="nav-link" data-i18n="nav_dyslexia">
+          <span class="nav-icon">📖</span> <span>Dyslexia Support</span>
+        </a>
+        <a href="#learning" class="nav-link" data-i18n="nav_learning">
+          <span class="nav-icon">💡</span> <span>Learning Centre</span>
+        </a>
+        <a href="#wellness" class="nav-link" data-i18n="nav_wellness">
+          <span class="nav-icon">🌿</span> <span>Wellness Centre</span>
+        </a>
+        <a href="#sensory" class="nav-link" data-i18n="nav_sensory">
+          <span class="nav-icon">🧩</span> <span>Autism & Sensory</span>
+        </a>
+        <a href="#assistant" class="nav-link" data-i18n="nav_assistant">
+          <span class="nav-icon">🤖</span> <span>AI Assistant <small class="badge badge-peach">Demo</small></span>
+        </a>
+
+        <div class="nav-section-label">Community & Portal</div>
+        <a href="#community" class="nav-link" data-i18n="nav_community">
+          <span class="nav-icon">💬</span> <span>Community</span>
+        </a>
+        <a href="#portal" class="nav-link" data-i18n="nav_portal">
+          <span class="nav-icon">🎓</span> <span>Parent & Teacher</span>
+        </a>
+        <a href="#resources" class="nav-link" data-i18n="nav_resources">
+          <span class="nav-icon">🏥</span> <span>Professional Resources</span>
+        </a>
+        <a href="#settings" class="nav-link" data-i18n="nav_settings">
+          <span class="nav-icon">⚙️</span> <span>Settings & A11y</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer Garden Widget -->
+      <div class="sidebar-footer">
+        <div class="garden-mini-widget" id="sidebar-garden-widget" title="Click to view full Achievement Garden in Dashboard">
+          <div class="garden-plant-icon" id="sidebar-garden-icon">🌱</div>
+          <div class="garden-mini-info">
+            <h4 data-i18n="garden_title">Achievement Garden</h4>
+            <p id="sidebar-garden-stage" data-i18n="plant_growing">Stage 2: Little Sprout</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN WRAPPER & HEADER
+         ========================================================================== -->
+    <div class="main-wrapper">
+      <header class="top-header" role="banner">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="btn-mobile-menu" aria-label="Toggle navigation menu">
+            ☰
+          </button>
+          <div class="page-breadcrumb">
+            <span>NeuroCare</span>
+            <span>/</span>
+            <span class="current" id="header-breadcrumb-current">Home</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Quick Sensory Escape Trigger -->
+          <button class="header-btn trigger-sensory-escape" title="Open Calming Sensory Escape Mode">
+            <span>🌌</span> <span class="hide-mobile" data-i18n="btn_sensory_escape">Sensory Escape</span>
+          </button>
+
+          <!-- Quick Reading Ruler Toggle -->
+          <button class="header-btn" id="btn-header-ruler" onclick="Accessibility.applyReadingRuler(!Accessibility.getState().readingRuler)" title="Toggle Reading Ruler (Follows mouse/arrows)">
+            <span>📏</span> <span class="hide-mobile">Ruler</span>
+          </button>
+
+          <!-- Quick Ambient Rain Sound Toggle -->
+          <button class="header-btn" id="btn-header-sound" onclick="Wellness.toggleAmbientTrack('rain')" title="Toggle Gentle Ambient Rain Sound">
+            <span>🌧️</span> <span class="hide-mobile">Rain Sound</span>
+          </button>
+
+          <a href="#settings" class="header-btn" title="Open Accessibility Settings">
+            <span>⚙️</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- ==========================================================================
+           MAIN CONTENT PAGES (SPA Sections)
+           ========================================================================== -->
+      <main class="content-container" role="main">
+
+        <!-- ====================================================================
+             SECTION 1: HOME
+             ==================================================================== -->
+        <section id="section-home" class="page-section active">
+          <!-- Hero Banner -->
+          <div class="hero-section">
+            <div class="hero-content">
+              <div class="hero-pill">
+                <span>✨</span> <span>Neurodiversity-Affirming Platform</span>
+              </div>
+              <h1 class="hero-heading" data-i18n="hero_title">Different Minds. Endless Possibilities.</h1>
+              <p class="hero-subtitle" data-i18n="hero_subtitle">
+                NeuroCare provides an empowering, calm, and sensory-friendly platform built to embrace neurodiversity. Discover personalized tools for ADHD focus, dyslexia reading support, autistic sensory balance, and engaging visual learning.
+              </p>
+              <div class="hero-actions">
+                <a href="#dashboard" class="btn btn-primary btn-lg" data-i18n="btn_get_started">Get Started →</a>
+                <a href="#adhd" class="btn btn-secondary btn-lg" data-i18n="btn_explore">Explore Features</a>
+                <button class="btn btn-mint btn-lg trigger-sensory-escape">🌌 Try Sensory Escape</button>
+              </div>
+            </div>
+            <div class="hero-floating-decor" aria-hidden="true">🧠</div>
+          </div>
+
+          <!-- Condition Spotlight Cards -->
+          <div class="section-header">
+            <h2 class="section-title">Support Tailored to Your Mind</h2>
+            <p class="section-subtitle">Choose a supportive pathway tailored to how your brain works and processes information.</p>
+          </div>
+
+          <div class="grid-4">
+            <!-- ADHD Card -->
+            <div class="condition-card card-adhd">
+              <div class="condition-icon">⚡</div>
+              <h3>ADHD Support</h3>
+              <p>Break large intimidating tasks into 5-minute micro-steps, harness Pomodoro focus rhythms, and grow your virtual Achievement Garden.</p>
+              <div class="feature-tag-list">
+                <span class="feature-tag">Break It Down</span>
+                <span class="feature-tag">Pomodoro</span>
+                <span class="feature-tag">Visual To-Do</span>
+              </div>
+              <a href="#adhd" class="btn btn-sm btn-primary">Open ADHD Tools →</a>
+            </div>
+
+            <!-- Dyslexia Card -->
+            <div class="condition-card card-dyslexia">
+              <div class="condition-icon">📖</div>
+              <h3>Dyslexia Support</h3>
+              <p>Customizable text tints, dyslexia-friendly fonts, Web Speech text-to-speech with word highlights, and our focus reading ruler.</p>
+              <div class="feature-tag-list">
+                <span class="feature-tag">Read It for Me</span>
+                <span class="feature-tag">Color Tints</span>
+                <span class="feature-tag">Reading Ruler</span>
+              </div>
+              <a href="#dyslexia" class="btn btn-sm btn-primary">Open Dyslexia Tools →</a>
+            </div>
+
+            <!-- Autism Card -->
+            <div class="condition-card card-autism">
+              <div class="condition-icon">🧩</div>
+              <h3>Autism & Sensory</h3>
+              <p>Low-stimulation environments, visual schedule cards, AAC communication tiles, and step-by-step interactive social stories.</p>
+              <div class="feature-tag-list">
+                <span class="feature-tag">AAC Cards</span>
+                <span class="feature-tag">Visual Routines</span>
+                <span class="feature-tag">Low-Stim Mode</span>
+              </div>
+              <a href="#sensory" class="btn btn-sm btn-primary">Open Sensory Tools →</a>
+            </div>
+
+            <!-- Learning Centre Card -->
+            <div class="condition-card card-learning">
+              <div class="condition-icon">💡</div>
+              <h3>Learning Centre</h3>
+              <p>Visual 3D flashcards, multi-sensory quizzes, memory matching games, and visual mathematics exercises suited for diverse thinkers.</p>
+              <div class="feature-tag-list">
+                <span class="feature-tag">Flashcards</span>
+                <span class="feature-tag">Memory Game</span>
+                <span class="feature-tag">Visual Math</span>
+              </div>
+              <a href="#learning" class="btn btn-sm btn-primary">Open Learning Centre →</a>
+            </div>
+          </div>
+
+          <!-- Four Pillars Section -->
+          <div class="pillars-section">
+            <div class="section-header" style="text-align: center;">
+              <h2 class="section-title" style="justify-content: center;">How NeuroCare Helps You Thrive</h2>
+              <p class="section-subtitle" style="margin: 0 auto;">Designed following universal design principles, cognitive ergonomics, and trauma-informed empathy.</p>
+            </div>
+
+            <div class="grid-4">
+              <div class="pillar-card">
+                <div class="pillar-icon">🌿</div>
+                <h4>Zero Overwhelm</h4>
+                <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 8px;">Calm pastel palettes, no flashing ads, ample whitespace, and optional low-stimulation themes.</p>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-icon">🧩</div>
+                <h4>Micro-Stepping</h4>
+                <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 8px;">Decomposing massive projects into atomic actions so starting never feels paralyzing.</p>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-icon">🔒</div>
+                <h4>Privacy First</h4>
+                <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 8px;">All your personal tasks, journals, and reflections are securely saved locally on your device.</p>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-icon">🌱</div>
+                <h4>Gamified Joy</h4>
+                <p style="font-size: 13.5px; color: var(--text-secondary); margin-top: 8px;">Nurture your Achievement Garden plant with sunshine and water as you complete activities.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inspirational Quote Banner -->
+          <div class="quote-banner">
+            <div class="quote-text">"If a child cannot learn the way we teach, maybe we should teach the way they learn."</div>
+            <div class="quote-author">— Dr. Ignacio Estrada</div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 2: MY DASHBOARD
+             ==================================================================== -->
+        <section id="section-dashboard" class="page-section">
+          <div class="section-header">
+            <h1 class="section-title"><span>📊</span> <span>My Personal Dashboard</span></h1>
+            <p class="section-subtitle">Today is <strong id="dash-current-date">Today</strong>. Here is your daily cognitive balance and progress snapshot.</p>
+          </div>
+
+          <!-- Top Stats Row -->
+          <div class="dashboard-stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon" style="background: var(--accent-mint-light); color: var(--accent-mint);">✓</div>
+              <div class="stat-info">
+                <h4>Tasks Done Today</h4>
+                <div class="stat-value" id="dash-stat-tasks-done">1</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon" style="background: var(--accent-peach-light); color: var(--accent-peach);">⏱️</div>
+              <div class="stat-info">
+                <h4>Focus Minutes</h4>
+                <div class="stat-value" id="dash-stat-focus-time">25m</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon" style="background: var(--accent-lavender-light); color: var(--accent-lavender);">✨</div>
+              <div class="stat-info">
+                <h4>Current Mood</h4>
+                <div class="stat-value" id="dash-stat-mood" style="font-size: 18px;">😊 Calm</div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon" style="background: var(--accent-blue-light); color: var(--accent-blue);">🌱</div>
+              <div class="stat-info">
+                <h4>Garden Growth</h4>
+                <div class="stat-value" id="garden-water-drops">💧 3 drops</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INNOVATIVE FEATURE C: ACHIEVEMENT GARDEN FULL SHOWCASE -->
+          <div class="garden-showcase-card">
+            <div class="garden-visual-stage">
+              <div id="garden-plant-svg" class="plant-svg-canvas">
+                <!-- Dynamic SVG will be rendered here -->
+              </div>
+            </div>
+
+            <div class="garden-details">
+              <span class="garden-stage-badge" id="garden-stage-badge">Stage 2: Curious Little Sprout</span>
+              <h3>Your Achievement Garden</h3>
+              <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;">
+                Every time you check off a to-do item, practice breathing, complete a learning quiz, or read with the dyslexia assistant, your virtual plant absorbs sunshine and water!
+              </p>
+
+              <div class="garden-progress-bar">
+                <div class="garden-progress-fill" id="garden-progress-fill" style="width: 45%;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                <span id="garden-points-display">35 Growth Points</span>
+                <span id="garden-progress-text">35 / 60 pts to next bloom</span>
+              </div>
+
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="btn btn-mint" id="btn-garden-water">💧 Water Plant (Uses 1 drop)</button>
+                <a href="#adhd" class="btn btn-secondary">+ Complete a Task</a>
+                <a href="#wellness" class="btn btn-secondary">🌿 Breathe & Relax</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Launchers -->
+          <h3 style="font-size: 18px; margin-bottom: 14px;">Quick Action Launchers</h3>
+          <div class="quick-action-grid">
+            <a href="#adhd" class="quick-action-btn">
+              <span class="icon">🧩</span>
+              <span>Break a Task</span>
+            </a>
+            <a href="#adhd" class="quick-action-btn">
+              <span class="icon">⏱️</span>
+              <span>Focus Timer</span>
+            </a>
+            <a href="#dyslexia" class="quick-action-btn">
+              <span class="icon">📖</span>
+              <span>Read Aloud</span>
+            </a>
+            <a href="#sensory" class="quick-action-btn">
+              <span class="icon">🗣️</span>
+              <span>Express AAC</span>
+            </a>
+            <a href="#wellness" class="quick-action-btn">
+              <span class="icon">🫁</span>
+              <span>2-Min Breath</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 3: ADHD SUPPORT
+             ==================================================================== -->
+        <section id="section-adhd" class="page-section">
+          <div class="section-header">
+            <h1 class="section-title"><span>⚡</span> <span>ADHD Productivity & Focus Hub</span></h1>
+            <p class="section-subtitle">Externalize working memory, mitigate task paralysis, and make time visible with gentle dopamine-friendly tools.</p>
+          </div>
+
+          <!-- INNOVATIVE FEATURE A: BREAK IT DOWN TOOL -->
+          <div class="break-it-down-box">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span style="font-size: 24px;">🧩</span>
+              <h3 style="font-size: 20px;">Innovative Feature: "Break It Down"</h3>
+            </div>
+            <p style="font-size: 14.5px; color: var(--text-secondary); margin-bottom: 16px;">
+              Feeling paralyzed by a big, vague task like <em>"Clean bedroom"</em>, <em>"Write history essay"</em>, or <em>"Study for science"</em>? Type it below and let NeuroCare break it into manageable 5-minute micro-steps!
+            </p>
+            <div class="form-row">
+              <input type="text" id="break-it-down-input" class="form-input" placeholder="e.g., Clean my bedroom, write research paper, study biology..." aria-label="Task to break down">
+              <button class="btn btn-primary" id="btn-run-breakdown">Break It Down ✨</button>
+            </div>
+            <div id="break-it-down-results"></div>
+          </div>
+
+          <div class="grid-2">
+            <!-- Daily To-Do List -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>📋</span> <span>Daily Micro-Task List</span></h3>
+                <span class="badge badge-mint" id="adhd-progress-label">1/3 done (33%)</span>
+              </div>
+
+              <!-- Daily Progress Bar -->
+              <div style="height: 8px; background: var(--bg-secondary); border-radius: var(--radius-full); overflow: hidden; margin-bottom: 16px;">
+                <div id="adhd-progress-fill" style="height: 100%; width: 33%; background: var(--accent-mint); transition: width 0.4s ease;"></div>
+              </div>
+
+              <!-- Add Task Form -->
+              <form id="adhd-todo-form" class="todo-input-bar">
+                <input type="text" id="adhd-todo-input" class="form-input" placeholder="Add a concrete micro-task..." required aria-label="New task description">
+                <select id="adhd-todo-priority" class="form-select" style="width: 110px;" aria-label="Priority level">
+                  <option value="low">Low</option>
+                  <option value="med" selected>Med</option>
+                  <option value="high">High</option>
+                </select>
+                <button type="submit" class="btn btn-primary">+ Add</button>
+              </form>
+
+              <!-- Task List -->
+              <div id="adhd-todo-list" class="todo-list">
+                <!-- Rendered by adhd.js -->
+              </div>
+            </div>
+
+            <!-- Pomodoro Focus Timer -->
+            <div class="card pomodoro-card">
+              <div class="card-header" style="justify-content: center; border-bottom: none; margin-bottom: 8px;">
+                <h3><span>⏱️</span> <span>Pomodoro Visual Focus Ring</span></h3>
+              </div>
+              <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;">Make time concrete. Focus on a single micro-task until the gentle chime rings.</p>
+
+              <div class="timer-mode-selector">
+                <button class="timer-mode-btn active" data-mode="focus">25m Focus</button>
+                <button class="timer-mode-btn" data-mode="short">5m Break</button>
+                <button class="timer-mode-btn" data-mode="long">15m Long Break</button>
+              </div>
+
+              <!-- Circular Progress SVG -->
+              <div class="timer-circle-container">
+                <svg class="timer-svg" viewBox="0 0 240 240">
+                  <circle class="timer-circle-bg" cx="120" cy="120" r="110" />
+                  <circle class="timer-circle-progress" id="pomodoro-progress-circle" cx="120" cy="120" r="110" />
+                </svg>
+                <div class="timer-time-display">
+                  <div class="timer-digits" id="pomodoro-timer-digits">25:00</div>
+                  <div class="timer-label">Focus Block</div>
+                </div>
+              </div>
+
+              <div class="timer-controls">
+                <button class="btn btn-primary btn-lg" id="btn-timer-toggle">▶ Start Focus</button>
+                <button class="btn btn-secondary btn-lg" id="btn-timer-reset">↺ Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Assignment Tracker, Badges & Quotes -->
+          <div class="grid-2" style="margin-top: 24px;">
+            <!-- Assignment Tracker -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>📚</span> <span>Assignment & Project Tracker</span></h3>
+              </div>
+              <form id="adhd-assignment-form" style="display: flex; gap: 8px; margin-bottom: 14px;">
+                <input type="text" id="assign-title-input" class="form-input" placeholder="Subject & Assignment..." required aria-label="Assignment name">
+                <input type="text" id="assign-due-input" class="form-input" placeholder="Due date..." style="width: 120px;" aria-label="Due date">
+                <button type="submit" class="btn btn-primary">+ Add</button>
+              </form>
+              <div id="adhd-assignment-list">
+                <!-- Rendered by adhd.js -->
+              </div>
+            </div>
+
+            <!-- Achievement Badges & Motivational Box -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🏆</span> <span>Achievement Badges</span></h3>
+              </div>
+              <div class="badges-container" id="adhd-badges-container">
+                <!-- Rendered by adhd.js -->
+              </div>
+
+              <div style="margin-top: 20px; padding: 14px; background: var(--bg-card-subtle); border-radius: var(--radius-md); border-left: 4px solid var(--accent-peach);">
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-peach); margin-bottom: 4px;">Daily Affirmation for ADHD Minds</div>
+                <div id="adhd-motivational-quote" style="font-size: 14px; font-style: italic;">
+                  "Starting is the hardest part. Just aim for 2 minutes of focus."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 4: DYSLEXIA SUPPORT
+             ==================================================================== -->
+        <section id="section-dyslexia" class="page-section">
+          <div class="section-header">
+            <h1 class="section-title"><span>📖</span> <span>Dyslexia-Friendly Reading Tool</span></h1>
+            <p class="section-subtitle">Comfortable, high-legibility reading controls, color overlays, Web Speech text-to-speech, and bionic eye guides.</p>
+          </div>
+
+          <!-- Reading Tool Customization Toolbar -->
+          <div class="dyslexia-toolbar">
+            <!-- Font Size -->
+            <div class="tool-control-group">
+              <label for="dyslexia-font-size-slider">Font Size:</label>
+              <input type="range" id="dyslexia-font-size-slider" min="14" max="34" value="20" aria-label="Adjust font size">
+              <span id="dyslexia-font-size-val" style="font-size: 12px; font-weight: bold; width: 40px;">20px</span>
+            </div>
+
+            <!-- Line Spacing -->
+            <div class="tool-control-group">
+              <label for="dyslexia-line-spacing-slider">Line Spacing:</label>
+              <input type="range" id="dyslexia-line-spacing-slider" min="1.4" max="2.6" step="0.2" value="1.8" aria-label="Adjust line spacing">
+              <span id="dyslexia-line-spacing-val" style="font-size: 12px; font-weight: bold; width: 35px;">1.8</span>
+            </div>
+
+            <!-- Letter Spacing -->
+            <div class="tool-control-group">
+              <label for="dyslexia-letter-spacing-slider">Letter Spacing:</label>
+              <input type="range" id="dyslexia-letter-spacing-slider" min="0" max="10" step="1" value="4" aria-label="Adjust letter spacing">
+              <span id="dyslexia-letter-spacing-val" style="font-size: 12px; font-weight: bold; width: 45px;">0.04em</span>
+            </div>
+
+            <!-- Color Swatches (Overlay Tints) -->
+            <div class="tool-control-group">
+              <label>Background Tint:</label>
+              <div class="color-swatch-list">
+                <button class="color-swatch-btn active" data-bg="#ffffff" data-text="#1e293b" style="background:#ffffff;" title="Crisp White"></button>
+                <button class="color-swatch-btn" data-bg="#fef9c3" data-text="#3c3730" style="background:#fef9c3;" title="Soft Yellow Tint"></button>
+                <button class="color-swatch-btn" data-bg="#d8f3dc" data-text="#1b4332" style="background:#d8f3dc;" title="Calm Mint Tint"></button>
+                <button class="color-swatch-btn" data-bg="#dbeafe" data-text="#1e3a5f" style="background:#dbeafe;" title="Ice Blue Tint"></button>
+                <button class="color-swatch-btn" data-bg="#ffe5d9" data-text="#523122" style="background:#ffe5d9;" title="Warm Peach Tint"></button>
+                <button class="color-swatch-btn" data-bg="#ede9fe" data-text="#37306b" style="background:#ede9fe;" title="Soft Lavender Tint"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions Bar: TTS, Bionic Reading, Simplify, Ruler -->
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; align-items: center;">
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-primary" id="btn-tts-play">▶ Read Aloud</button>
+              <button class="btn btn-secondary" id="btn-tts-pause">⏸ Pause</button>
+              <button class="btn btn-secondary" id="btn-tts-stop">⏹ Stop</button>
+            </div>
+
+            <button class="btn btn-accent" id="btn-toggle-bionic" title="Bold first letters of each word to guide the eye">
+              👁️ Bionic Eye-Pacing
+            </button>
+
+            <button class="btn btn-mint" id="btn-simplify-text" title="Replace complex multi-syllable jargon with everyday clear words">
+              ✨ Simplify Language
+            </button>
+
+            <!-- Sample Texts Dropdown -->
+            <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 12px; color: var(--text-muted);">Try Samples:</span>
+              <button class="btn btn-sm btn-secondary" onclick="Dyslexia.loadSample('nature')">Nature</button>
+              <button class="btn btn-sm btn-secondary" onclick="Dyslexia.loadSample('space')">Space</button>
+              <button class="btn btn-sm btn-secondary" onclick="Dyslexia.loadSample('creativity')">Creativity</button>
+            </div>
+          </div>
+
+          <!-- Reading Canvas (Editable for user pasted text) -->
+          <div class="reading-stage-card" id="dyslexia-reader-canvas">
+            <div id="dyslexia-reader-editor" class="reading-stage-content" contenteditable="true" aria-label="Editable Dyslexia Reader Content Area" spellcheck="false">
+              <!-- Default sample text will be loaded here -->
+            </div>
+          </div>
+
+          <!-- RSVP Speed Reader Exercise & Vocabulary Builder -->
+          <div class="grid-2">
+            <!-- RSVP Speed Reader -->
+            <div class="rsvp-box">
+              <h3 style="font-size: 18px; margin-bottom: 6px;">🎯 Rapid Word Pacing (RSVP Reader)</h3>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Trains rapid visual word recognition without line tracking stress.</p>
+
+              <div class="rsvp-word-display" id="rsvp-current-word">Ready...</div>
+              <div id="rsvp-progress-text" style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Word 0 of 0</div>
+
+              <div style="display: flex; justify-content: center; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" id="btn-rsvp-start">▶ Start</button>
+                <button class="btn btn-secondary btn-sm" id="btn-rsvp-pause">⏸ Pause</button>
+                <button class="btn btn-secondary btn-sm" id="btn-rsvp-reset">↺ Reset</button>
+                <select id="rsvp-speed-select" class="form-select" style="width: 120px;" aria-label="RSVP speed">
+                  <option value="120">120 WPM (Gentle)</option>
+                  <option value="180" selected>180 WPM (Normal)</option>
+                  <option value="240">240 WPM (Fast)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Vocabulary Builder -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>📚</span> <span>Vocabulary Builder & Pronunciation</span></h3>
+              </div>
+              <div id="dyslexia-vocab-container" style="max-height: 280px; overflow-y: auto;">
+                <!-- Rendered by dyslexia.js -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 5: LEARNING CENTRE
+             ==================================================================== -->
+        <section id="section-learning" class="page-section">
+          <div class="section-header">
+            <h1 class="section-title"><span>💡</span> <span>Multi-Sensory Learning Centre</span></h1>
+            <p class="section-subtitle">Adaptive educational experiences designed for visual, kinesthetic, and multi-modal thinkers.</p>
+          </div>
+
+          <!-- INNOVATIVE FEATURE E: MY LEARNING STYLE SELECTOR -->
+          <div class="card" style="margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+              <div>
+                <h3 style="font-size: 18px;">Innovative Feature: "My Learning Style"</h3>
+                <p style="font-size: 13.5px; color: var(--text-muted);">Select your preferred cognitive modality to tailor your experience:</p>
+              </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button class="btn btn-sm btn-secondary learning-style-pill active" data-style="visual">👁️ Visual</button>
+                <button class="btn btn-sm btn-secondary learning-style-pill" data-style="audio">🎧 Audio</button>
+                <button class="btn btn-sm btn-secondary learning-style-pill" data-style="reading">📖 Reading</button>
+                <button class="btn btn-sm btn-secondary learning-style-pill" data-style="interactive">🧩 Interactive</button>
+              </div>
+            </div>
+            <div id="learning-style-advice" style="padding: 12px 16px; background: var(--bg-card-subtle); border-radius: var(--radius-md); font-size: 13.5px;">
+              💡 <strong>Visual Learner:</strong> We recommend our interactive flashcards with diagrams, color coding, and visual math block counters!
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <!-- 3D Interactive Flashcards -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🃏</span> <span>3D Interactive Flashcards</span></h3>
+                <span id="flashcard-counter" class="badge badge-blue">Card 1 of 3</span>
+              </div>
+
+              <!-- Category Filter Buttons -->
+              <div style="display: flex; gap: 6px; margin-bottom: 16px;">
+                <button class="btn btn-sm btn-secondary flashcard-cat-btn active" data-cat="science" onclick="Learning.setFlashcardCategory('science')">Science</button>
+                <button class="btn btn-sm btn-secondary flashcard-cat-btn" data-cat="social" onclick="Learning.setFlashcardCategory('social')">Social Cues</button>
+                <button class="btn btn-sm btn-secondary flashcard-cat-btn" data-cat="skills" onclick="Learning.setFlashcardCategory('skills')">Life Skills</button>
+              </div>
+
+              <!-- 3D Card Box -->
+              <div class="flashcard-wrapper">
+                <div class="flashcard" id="interactive-flashcard">
+                  <!-- Front Face -->
+                  <div class="flashcard-face">
+                    <span class="badge badge-lavender" style="margin-bottom: 14px;">Question</span>
+                    <div class="flashcard-title" id="flashcard-question">What is Photosynthesis?</div>
+                    <div class="flashcard-prompt">(Click anywhere or press Space to flip ↺)</div>
+                  </div>
+                  <!-- Back Face -->
+                  <div class="flashcard-face flashcard-back">
+                    <span class="badge badge-mint" style="margin-bottom: 14px;">Explanation</span>
+                    <div style="font-size: 16px; line-height: 1.6; margin-bottom: 12px;" id="flashcard-answer">Answer here</div>
+                    <div style="font-size: 12px; color: var(--accent-mint); font-weight: bold;" id="flashcard-hint">Hint: Think of sunlight</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Controls -->
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn btn-secondary btn-sm" id="btn-flashcard-prev">← Prev</button>
+                <button class="btn btn-primary btn-sm" id="btn-flashcard-flip">↺ Flip Card</button>
+                <button class="btn btn-mint btn-sm" id="btn-flashcard-know">✓ Got It (+5 pts)</button>
+                <button class="btn btn-secondary btn-sm" id="btn-flashcard-next">Next →</button>
+              </div>
+            </div>
+
+            <!-- Educational Quiz with Instant Feedback -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>📝</span> <span>Neurodiversity Mastery Quiz</span></h3>
+                <span class="badge badge-peach" id="quiz-progress-text">Question 1 of 4</span>
+              </div>
+              <div id="quiz-question-container">
+                <!-- Rendered by learning.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Memory Match Game & Visual Math Builder -->
+          <div class="grid-2" style="margin-top: 24px;">
+            <!-- Memory Match Game -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🧠</span> <span>Visual Memory Matching Game</span></h3>
+                <div style="font-size: 13px; color: var(--text-muted);">
+                  Moves: <strong id="memory-moves-counter">0</strong>
+                </div>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Find and match matching neurodiversity symbols. Strengthens working memory retention.</p>
+              <div class="memory-grid" id="memory-game-grid">
+                <!-- Rendered by learning.js -->
+              </div>
+              <div style="text-align: center; margin-top: 18px;">
+                <button class="btn btn-secondary btn-sm" id="btn-reset-memory-game">↺ Restart Game</button>
+              </div>
+            </div>
+
+            <!-- Visual Mathematics Builder & Audio Lessons -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🔢</span> <span>Visual Math & Pattern Builder</span></h3>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Concrete number representations to help with dyscalculia and number anxiety.</p>
+
+              <div style="text-align: center; padding: 20px; background: var(--bg-card-subtle); border-radius: var(--radius-md); margin-bottom: 18px;">
+                <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 12px;">
+                  <button class="btn btn-secondary btn-icon-only" onclick="Learning.changeMathCounter(-1)" aria-label="Decrease number">-</button>
+                  <span id="math-number-label" style="font-size: 36px; font-weight: 800; color: var(--accent-blue); width: 60px;">4</span>
+                  <button class="btn btn-secondary btn-icon-only" onclick="Learning.changeMathCounter(1)" aria-label="Increase number">+</button>
+                </div>
+                <div id="math-dots-container" style="min-height: 40px;">
+                  <!-- Rendered by learning.js -->
+                </div>
+              </div>
+
+              <!-- Mini Audio Lessons -->
+              <h4 style="font-size: 15px; margin-bottom: 8px;">🎧 Mini Audio Lessons</h4>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-secondary btn-sm" onclick="Learning.playAudioLesson('executive')">▶ Executive Function 101</button>
+                <button class="btn btn-secondary btn-sm" onclick="Learning.playAudioLesson('sensory')">▶ Sensory Regulation Tips</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 6: WELLNESS CENTRE
+             ==================================================================== -->
+        <section id="section-wellness" class="page-section">
+          <!-- Medical Disclaimer -->
+          <div class="disclaimer-banner">
+            <span class="disclaimer-icon">ℹ️</span>
+            <div>
+              <strong>General Wellbeing Notice:</strong> This section provides self-regulation exercises, guided breathing, and mood reflections for general emotional support. It is not a clinical medical service, therapy, or emergency helpline.
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h1 class="section-title"><span>🌿</span> <span>Sensory & Wellness Centre</span></h1>
+            <p class="section-subtitle">Calm your nervous system, track emotional states, and ground your attention with soothing audio and guided breathing.</p>
+          </div>
+
+          <div class="grid-2">
+            <!-- Animated Breathing Visualizer -->
+            <div class="card breathing-box">
+              <h3 style="font-size: 22px; margin-bottom: 4px;">Gentle Box Breathing (4-4-4-4)</h3>
+              <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px;">Activates the vagus nerve to lower heart rate and reduce sensory overwhelm.</p>
+
+              <div class="breathing-circle-wrapper">
+                <div class="breathing-circle" id="breathing-circle-anim">
+                  <span id="breathing-countdown-num">4</span>
+                </div>
+              </div>
+
+              <div class="breathing-instruction" id="breathing-instruction-text">Ready to begin</div>
+
+              <div style="display: flex; justify-content: center; gap: 12px; margin-top: 18px;">
+                <button class="btn btn-primary btn-lg" id="btn-toggle-breathing">▶ Start Breathing</button>
+              </div>
+            </div>
+
+            <!-- Daily Mood Tracker -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>✨</span> <span>Daily Mood Check-In</span></h3>
+              </div>
+              <p style="font-size: 13.5px; color: var(--text-muted);">How is your nervous system feeling right now?</p>
+
+              <div class="mood-selector">
+                <button class="mood-btn" data-emoji="😄" data-label="Great">
+                  <span class="mood-emoji">😄</span>
+                  <span class="mood-label">Great</span>
+                </button>
+                <button class="mood-btn active" data-emoji="😊" data-label="Calm">
+                  <span class="mood-emoji">😊</span>
+                  <span class="mood-label">Calm</span>
+                </button>
+                <button class="mood-btn" data-emoji="😐" data-label="Okay">
+                  <span class="mood-emoji">😐</span>
+                  <span class="mood-label">Okay</span>
+                </button>
+                <button class="mood-btn" data-emoji="😟" data-label="Anxious">
+                  <span class="mood-emoji">😟</span>
+                  <span class="mood-label">Anxious</span>
+                </button>
+                <button class="mood-btn" data-emoji="😣" data-label="Overwhelmed">
+                  <span class="mood-emoji">😣</span>
+                  <span class="mood-label">Overwhelmed</span>
+                </button>
+                <button class="mood-btn" data-emoji="😴" data-label="Tired">
+                  <span class="mood-emoji">😴</span>
+                  <span class="mood-label">Tired</span>
+                </button>
+              </div>
+
+              <div class="form-group">
+                <label for="mood-intensity-slider" class="form-label">Energy Level: (1 to 10)</label>
+                <input type="range" id="mood-intensity-slider" min="1" max="10" value="7" class="form-input">
+              </div>
+
+              <div class="form-group">
+                <input type="text" id="mood-note-input" class="form-input" placeholder="Optional note: What contributed to this feeling?">
+              </div>
+
+              <button class="btn btn-primary btn-sm" id="btn-save-mood">Save Check-In (+10 pts)</button>
+
+              <div style="margin-top: 20px;">
+                <h4 style="font-size: 14px; margin-bottom: 8px;">Recent Check-Ins</h4>
+                <div id="wellness-mood-history"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ambient Sound Synthesizer & Daily Journal -->
+          <div class="grid-2" style="margin-top: 24px;">
+            <!-- Ambient Sound Machine -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🎧</span> <span>Ambient Sound Sanctuary (Web Audio Synth)</span></h3>
+              </div>
+              <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;">Pure browser-synthesized sounds that block sudden startling noises and ease sensory fatigue. 100% offline.</p>
+
+              <div class="ambient-controls-grid">
+                <button class="sound-toggle-btn" data-sound="rain">
+                  <span style="font-size: 28px;">🌧️</span>
+                  <span>Soft Rain</span>
+                </button>
+                <button class="sound-toggle-btn" data-sound="ocean">
+                  <span style="font-size: 28px;">🌊</span>
+                  <span>Gentle Ocean</span>
+                </button>
+                <button class="sound-toggle-btn" data-sound="binaural">
+                  <span style="font-size: 28px;">🔔</span>
+                  <span>432Hz Calm</span>
+                </button>
+                <button class="sound-toggle-btn" data-sound="pink">
+                  <span style="font-size: 28px;">💨</span>
+                  <span>Pink Noise</span>
+                </button>
+              </div>
+
+              <!-- Positive Affirmations Box -->
+              <div style="margin-top: 24px; padding: 18px; background: linear-gradient(135deg, var(--accent-lavender-light), var(--bg-card)); border-radius: var(--radius-md); border: 1px solid var(--accent-lavender);">
+                <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--accent-lavender); margin-bottom: 6px;">Daily Positive Affirmation</div>
+                <div id="affirmation-quote-text" style="font-size: 15px; font-weight: 600; line-height: 1.5; margin-bottom: 10px;">
+                  "My worth is not defined by how productive I was today."
+                </div>
+                <button class="btn btn-sm btn-secondary" id="btn-new-affirmation">🎲 New Affirmation</button>
+              </div>
+            </div>
+
+            <!-- Guided Daily Journal -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>📔</span> <span>Guided De-Clutter Journal</span></h3>
+              </div>
+              <div class="form-group">
+                <label for="journal-prompt-select" class="form-label">Choose a Gentle Prompt:</label>
+                <select id="journal-prompt-select" class="form-select">
+                  <option value="One small win today">What is one small win today (even taking a shower or drinking water)?</option>
+                  <option value="What gave me comfort">What gave me sensory comfort or joy today?</option>
+                  <option value="What can wait until tomorrow">What is one thing that can safely wait until tomorrow?</option>
+                  <option value="Brain dump">Free-form brain dump (release all racing thoughts)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <textarea id="journal-note-textarea" class="form-textarea" rows="4" placeholder="Write freely here. Your thoughts are kept private on your device..."></textarea>
+              </div>
+
+              <button class="btn btn-primary btn-sm" id="btn-save-journal">Save Reflection (+15 pts)</button>
+
+              <div style="margin-top: 18px;">
+                <h4 style="font-size: 14px; margin-bottom: 8px;">Past Reflections</h4>
+                <div id="wellness-journal-list" style="max-height: 200px; overflow-y: auto;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 7: AUTISM & SENSORY SUPPORT
+             ==================================================================== -->
+        <section id="section-sensory" class="page-section">
+          <div class="section-header">
+            <h1 class="section-title"><span>🧩</span> <span>Autism & Sensory Support</span></h1>
+            <p class="section-subtitle">Visual routines, AAC communication cards, low-stimulation interfaces, and predictable social narratives.</p>
+          </div>
+
+          <!-- Quick Sensory Controls -->
+          <div class="card" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--accent-mint-light), var(--bg-card));">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+              <div>
+                <h3 style="font-size: 18px;">Sensory Comfort Controls</h3>
+                <p style="font-size: 13.5px; color: var(--text-secondary);">One-click adjustments to soothe sensory overload.</p>
+              </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-sm" onclick="Accessibility.applyTheme('low-stim')">🕊️ Low-Stimulation Mode</button>
+                <button class="btn btn-secondary btn-sm" onclick="Accessibility.applyReduceMotion(true)">⏸ Disable Animations</button>
+                <button class="btn btn-secondary btn-sm" onclick="Wellness.toggleAmbientTrack('pink')">💨 Pink Noise Hum</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- INNOVATIVE FEATURE D: EXPRESS WITHOUT WORDS (AAC COMMUNICATION BOARD) -->
+          <div class="card" style="margin-bottom: 24px;">
+            <div class="card-header">
+              <h3><span>🗣️</span> <span>Innovative Feature: "Express Without Words" (AAC Board)</span></h3>
+              <span class="badge badge-lavender">Visual Communication</span>
+            </div>
+            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
+              When verbal communication feels overwhelming or exhausting, tap any card below to enlarge the expression on screen and speak it aloud.
+            </p>
+
+            <!-- Spoken Message Banner -->
+            <div id="aac-spoken-banner" class="aac-banner" style="display: none;">
+              <div>
+                <span style="font-size: 12px; text-transform: uppercase; color: var(--text-muted); font-weight: bold;">Currently Communicating:</span>
+                <div class="aac-spoken-text" id="aac-spoken-phrase">"I need a quiet break"</div>
+              </div>
+              <button class="btn btn-sm btn-secondary" onclick="document.getElementById('aac-spoken-banner').style.display='none'">✕ Dismiss</button>
+            </div>
+
+            <!-- AAC Card Tiles Grid -->
+            <div class="aac-grid">
+              <div class="aac-card" data-speak="I need a quiet break please">
+                <span class="aac-emoji">🤫</span>
+                <span class="aac-text">Need Quiet Break</span>
+              </div>
+              <div class="aac-card" data-speak="I am feeling overwhelmed right now">
+                <span class="aac-emoji">🌊</span>
+                <span class="aac-text">Feeling Overwhelmed</span>
+              </div>
+              <div class="aac-card" data-speak="Yes, I agree">
+                <span class="aac-emoji">👍</span>
+                <span class="aac-text">Yes / Agree</span>
+              </div>
+              <div class="aac-card" data-speak="No, not right now thank you">
+                <span class="aac-emoji">✋</span>
+                <span class="aac-text">No / Not Now</span>
+              </div>
+              <div class="aac-card" data-speak="Could I please have a glass of water?">
+                <span class="aac-emoji">💧</span>
+                <span class="aac-text">Need Water</span>
+              </div>
+              <div class="aac-card" data-speak="I need a little help with this">
+                <span class="aac-emoji">🤝</span>
+                <span class="aac-text">Need Help</span>
+              </div>
+              <div class="aac-card" data-speak="It is too loud here">
+                <span class="aac-emoji">📢</span>
+                <span class="aac-text">Too Loud</span>
+              </div>
+              <div class="aac-card" data-speak="Please give me some physical space">
+                <span class="aac-emoji">🚶</span>
+                <span class="aac-text">Please Give Space</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Daily Schedule & Social Story -->
+          <div class="grid-2">
+            <!-- Visual Schedule -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>📅</span> <span>Visual Daily Schedule</span></h3>
+              </div>
+              <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;">Predictable transitions reduce anxiety. Tap to check off blocks as you finish them.</p>
+
+              <div class="visual-schedule-list">
+                <div class="schedule-block" onclick="this.classList.toggle('completed')">
+                  <span class="schedule-time">08:00 AM</span>
+                  <span class="schedule-icon">🌅</span>
+                  <span class="schedule-title">Gentle Wake Up & Hydrate</span>
+                  <input type="checkbox" aria-label="Mark schedule item done" style="width: 18px; height: 18px; accent-color: var(--accent-mint);">
+                </div>
+                <div class="schedule-block" onclick="this.classList.toggle('completed')">
+                  <span class="schedule-time">09:30 AM</span>
+                  <span class="schedule-icon">💻</span>
+                  <span class="schedule-title">Study / Work Focus Block 1</span>
+                  <input type="checkbox" aria-label="Mark schedule item done" style="width: 18px; height: 18px; accent-color: var(--accent-mint);">
+                </div>
+                <div class="schedule-block" onclick="this.classList.toggle('completed')">
+                  <span class="schedule-time">11:30 AM</span>
+                  <span class="schedule-icon">🎧</span>
+                  <span class="schedule-title">Sensory Reset & Quiet Rest</span>
+                  <input type="checkbox" aria-label="Mark schedule item done" style="width: 18px; height: 18px; accent-color: var(--accent-mint);">
+                </div>
+                <div class="schedule-block" onclick="this.classList.toggle('completed')">
+                  <span class="schedule-time">01:00 PM</span>
+                  <span class="schedule-icon">🥗</span>
+                  <span class="schedule-title">Nourishing Lunch & Walk Outside</span>
+                  <input type="checkbox" aria-label="Mark schedule item done" style="width: 18px; height: 18px; accent-color: var(--accent-mint);">
+                </div>
+                <div class="schedule-block" onclick="this.classList.toggle('completed')">
+                  <span class="schedule-time">08:30 PM</span>
+                  <span class="schedule-icon">🌙</span>
+                  <span class="schedule-title">Evening Dim Lighting & Wind Down</span>
+                  <input type="checkbox" aria-label="Mark schedule item done" style="width: 18px; height: 18px; accent-color: var(--accent-mint);">
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Story Example -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>📖</span> <span>Social Story: Navigating Unexpected Changes</span></h3>
+              </div>
+              <div style="background: var(--bg-card-subtle); padding: 18px; border-radius: var(--radius-md); font-size: 14.5px; line-height: 1.7; border-left: 4px solid var(--accent-lavender);">
+                <p><strong>1. Sometimes, plans change suddenly:</strong> A class might be cancelled, or a meeting time might move. When this happens, it is normal to feel startled or uneasy.</p>
+                <p style="margin-top: 10px;"><strong>2. It is okay to take a moment:</strong> I can take three slow breaths, drink water, or listen to a calming sound while my brain adjusts.</p>
+                <p style="margin-top: 10px;"><strong>3. The change does not mean danger:</strong> I can check my updated schedule or ask: <em>"What is the new plan?"</em> People will understand that I need a moment to re-orient.</p>
+              </div>
+
+              <!-- Emotion Body Mapping -->
+              <div style="margin-top: 20px;">
+                <h4 style="font-size: 15px; margin-bottom: 8px;">Body Sensation Mapping</h4>
+                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+                  <div>• <strong>Fluttery stomach:</strong> Often means anxiety. Try sipping warm water.</div>
+                  <div>• <strong>Clenched jaw / fists:</strong> Often means overstimulation. Try deep arm stretching.</div>
+                  <div>• <strong>Heavy shoulders:</strong> Often means fatigue. Honor your need to rest.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 8: AI ASSISTANT DEMO
+             ==================================================================== -->
+        <section id="section-assistant" class="page-section">
+          <!-- Non-Diagnostic Notice -->
+          <div class="disclaimer-banner">
+            <span class="disclaimer-icon">🤖</span>
+            <div>
+              <strong>Demonstration AI Assistant:</strong> This is a rule-based educational chatbot demonstrating how conversational AI can provide neurodivergent study tips and executive function strategies. <em>It does not diagnose or treat medical conditions.</em>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h1 class="section-title"><span>🤖</span> <span>NeuroCare Learning Assistant (Demo)</span></h1>
+            <p class="section-subtitle">Ask questions about overcoming task paralysis, study hacks, dyslexia reading accommodations, or sensory balance.</p>
+          </div>
+
+          <!-- Chat Window -->
+          <div class="chat-container">
+            <div class="chat-header">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent-mint);"></div>
+                <strong>NeuroCare Companion Bot</strong>
+                <span class="badge badge-blue">Rule-Based Demo</span>
+              </div>
+              <button class="btn btn-sm btn-secondary" id="btn-clear-chat">Clear Chat</button>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="chat-messages" id="assistant-messages-container" role="log" aria-live="polite">
+              <!-- Rendered by assistant.js -->
+            </div>
+
+            <!-- Suggested Questions Chips -->
+            <div class="chat-suggestions">
+              <button class="suggestion-chip">💡 How do I start when I have ADHD paralysis?</button>
+              <button class="suggestion-chip">📖 Give me tips for dyslexia reading fatigue</button>
+              <button class="suggestion-chip">⚡ How can I calm sensory overload?</button>
+              <button class="suggestion-chip">⏱️ What is the Pomodoro technique?</button>
+              <button class="suggestion-chip">🎓 How do I ask a teacher for accommodations?</button>
+            </div>
+
+            <!-- Message Input Bar -->
+            <form id="assistant-chat-form" class="chat-input-bar">
+              <input type="text" id="assistant-chat-input" class="form-input" placeholder="Type your question here (e.g., 'How do I start studying?')..." required aria-label="Chat input message">
+              <button type="submit" class="btn btn-primary">Send 💬</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 9: COMMUNITY SECTION
+             ==================================================================== -->
+        <section id="section-community" class="page-section">
+          <!-- Community Disclaimer -->
+          <div class="disclaimer-banner">
+            <span class="disclaimer-icon">👥</span>
+            <div>
+              <strong>Sample Community Board:</strong> This is a demonstration peer support interface with sample stories and strategies. User submissions are stored locally on your device for demonstration purposes.
+            </div>
+          </div>
+
+          <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+            <div>
+              <h1 class="section-title"><span>💬</span> <span>Neurodivergent Community Hub</span></h1>
+              <p class="section-subtitle">Real experiences, study hacks, inspirational stories, and peer-to-peer reassurance.</p>
+            </div>
+            <button class="btn btn-primary" id="btn-open-community-modal">+ Share Your Experience / Ask Question</button>
+          </div>
+
+          <!-- Filters & Search -->
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 24px;">
+            <div class="community-filters" style="margin-bottom: 0;">
+              <button class="filter-btn active" data-category="all">All Topics</button>
+              <button class="filter-btn" data-category="adhd">⚡ ADHD Hacks</button>
+              <button class="filter-btn" data-category="dyslexia">📖 Dyslexia Wins</button>
+              <button class="filter-btn" data-category="sensory">🧩 Autism & Sensory</button>
+              <button class="filter-btn" data-category="parent-teacher">🎓 Parent & Teacher</button>
+            </div>
+            <div style="margin-left: auto; width: 260px;">
+              <input type="text" id="community-search-input" class="form-input" placeholder="🔍 Search posts & tags..." aria-label="Search community posts">
+            </div>
+          </div>
+
+          <!-- Community Posts Feed -->
+          <div id="community-posts-container">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 10: PARENT & TEACHER PORTAL
+             ==================================================================== -->
+        <section id="section-portal" class="page-section">
+          <div class="section-header">
+            <h1 class="section-title"><span>🎓</span> <span>Parent & Teacher Support Portal</span></h1>
+            <p class="section-subtitle">Guidance, classroom accommodations, and collaborative advocacy tools to help neurodivergent learners thrive.</p>
+          </div>
+
+          <!-- Portal Tabs -->
+          <div style="display: flex; gap: 10px; margin-bottom: 24px; border-bottom: 1px solid var(--border-light); padding-bottom: 12px;">
+            <button class="btn btn-secondary portal-tab-btn active" data-tab="parents">👨‍👩‍👧 For Parents & Guardians</button>
+            <button class="btn btn-secondary portal-tab-btn" data-tab="teachers">👩‍🏫 For Teachers & Educators</button>
+            <button class="btn btn-secondary portal-tab-btn" data-tab="accommodations">📋 Accommodations Matrix</button>
+          </div>
+
+          <!-- Parents Tab -->
+          <div class="portal-tab-pane" id="portal-pane-parents">
+            <div class="grid-2">
+              <div class="card">
+                <h3><span>🏡</span> Supporting Your Child at Home</h3>
+                <ul style="margin: 14px 0 0 20px; line-height: 1.8; font-size: 14.5px; color: var(--text-secondary);">
+                  <li><strong>Externalize Routines:</strong> Hang visual picture checklists by the door, bathroom, and study desk.</li>
+                  <li><strong>Transition Warnings:</strong> Give 5-minute and 2-minute gentle warnings before switching activities.</li>
+                  <li><strong>De-Escalate, Don't Debate:</strong> When sensory overload strikes, prioritize quiet safety over immediate reasoning.</li>
+                  <li><strong>Praise Effort Over Outcome:</strong> Celebrate initiation, persistence, and self-advocacy rather than only grades.</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3><span>🤝</span> School Advocacy & IEP/504 Meetings</h3>
+                <p style="font-size: 14px; color: var(--text-secondary); margin: 12px 0 16px; line-height: 1.6;">
+                  Coming prepared to school meetings builds a collaborative partnership between families and teachers.
+                </p>
+                <button class="btn btn-primary btn-sm" id="btn-print-parent-guide">🖨️ Print Parent Advocacy Guide</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Teachers Tab -->
+          <div class="portal-tab-pane" id="portal-pane-teachers" style="display: none;">
+            <div class="grid-2">
+              <div class="card">
+                <h3><span>🏫</span> Sensory-Inclusive Classroom Strategies</h3>
+                <ul style="margin: 14px 0 0 20px; line-height: 1.8; font-size: 14.5px; color: var(--text-secondary);">
+                  <li><strong>Chunked Instructions:</strong> Give one step at a time; write instructions visibly on the board.</li>
+                  <li><strong>Alternative Formats:</strong> Permit audio books, speech-to-text, or mind-maps for assignments.</li>
+                  <li><strong>Sensory-Friendly Seating:</strong> Offer seating away from noisy air conditioners or high-traffic doors.</li>
+                  <li><strong>Fidget Friendly:</strong> Allow quiet tactile fidgets that assist regulation without distracting peers.</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3><span>💡</span> Supporting Executive Function in Class</h3>
+                <p style="font-size: 14px; color: var(--text-secondary); margin: 12px 0; line-height: 1.6;">
+                  When a student misses an assignment, it is usually an executive dysfunction barrier rather than defiance or laziness.
+                </p>
+                <div style="background: var(--bg-card-subtle); padding: 12px; border-radius: var(--radius-md); font-size: 13.5px;">
+                  "Can you show me your first step?" is far more productive than "Why haven't you started?"
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accommodations Matrix Tab -->
+          <div class="portal-tab-pane" id="portal-pane-accommodations" style="display: none;">
+            <div class="card">
+              <h3><span>📋</span> Evidence-Based School & Workplace Accommodations</h3>
+              <div style="overflow-x: auto; margin-top: 16px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-light); text-align: left;">
+                      <th style="padding: 10px;">Area</th>
+                      <th style="padding: 10px;">Common Challenge</th>
+                      <th style="padding: 10px;">Recommended Accommodation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                      <td style="padding: 12px 10px;"><strong>ADHD</strong></td>
+                      <td style="padding: 12px 10px;">Time blindness, task initiation</td>
+                      <td style="padding: 12px 10px;">Segmented due dates, visual timers, quiet test room with extra time</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                      <td style="padding: 12px 10px;"><strong>Dyslexia</strong></td>
+                      <td style="padding: 12px 10px;">Reading fatigue, spelling anxiety</td>
+                      <td style="padding: 12px 10px;">Colored overlays, text-to-speech tools, spelling not penalized on content exams</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                      <td style="padding: 12px 10px;"><strong>Autism</strong></td>
+                      <td style="padding: 12px 10px;">Sensory overload, sudden changes</td>
+                      <td style="padding: 12px 10px;">Advance warning of schedule shifts, quiet retreat pass, noise-cancelling headphones</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 11: PROFESSIONAL RESOURCES
+             ==================================================================== -->
+        <section id="section-resources" class="page-section">
+          <!-- Non-Medical Disclaimer -->
+          <div class="disclaimer-banner">
+            <span class="disclaimer-icon">ℹ️</span>
+            <div>
+              <strong>Sample Educational Directory:</strong> The entries below represent educational role descriptions and general support organizations. NeuroCare does not provide medical diagnosis or license validation.
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h1 class="section-title"><span>🏥</span> <span>Professional Resources & Specialist Guide</span></h1>
+            <p class="section-subtitle">Learn about the different specialists who diagnose and support neurodevelopmental differences, and prepare for your appointments.</p>
+          </div>
+
+          <!-- Specialist Roles Grid -->
+          <div class="grid-3" style="margin-bottom: 30px;">
+            <div class="card">
+              <div style="font-size: 32px; margin-bottom: 10px;">🧠</div>
+              <h4>Clinical Psychologists</h4>
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 6px;">
+                Conduct comprehensive neuropsychological assessments, evaluate cognitive profiles, executive functioning, and guide behavioral support plans.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 32px; margin-bottom: 10px;">⚕️</div>
+              <h4>Neurologists</h4>
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 6px;">
+                Medical doctors specializing in nervous system anatomy, brain health, neurological screenings, and medical management when appropriate.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 32px; margin-bottom: 10px;">🗣️</div>
+              <h4>Speech-Language Pathologists</h4>
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 6px;">
+                Support phonological processing for dyslexia, social pragmatic communication, AAC usage, and expressive language expansion.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 32px; margin-bottom: 10px;">🖐️</div>
+              <h4>Occupational Therapists (OT)</h4>
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 6px;">
+                Specialize in sensory integration, fine motor coordination, proprioception, and ergonomic adjustments for daily living.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 32px; margin-bottom: 10px;">📚</div>
+              <h4>Special Educators</h4>
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 6px;">
+                Implement customized multi-sensory teaching curriculums (e.g., Orton-Gillingham for dyslexia) and design IEP school accommodations.
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 32px; margin-bottom: 10px;">🌐</div>
+              <h4>Support Organizations</h4>
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 6px;">
+                Global advocacy groups (such as CHADD, Understood.org, and the Autistic Self Advocacy Network) providing research and community resources.
+              </p>
+            </div>
+          </div>
+
+          <!-- Interactive Appointment Preparation Checklist -->
+          <div class="card">
+            <div class="card-header">
+              <h3><span>📋</span> <span>Interactive Appointment Preparation Checklist</span></h3>
+              <button class="btn btn-sm btn-primary" id="btn-print-appointment-checklist">🖨️ Print Checklist</button>
+            </div>
+            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
+              Visiting a doctor, psychologist, or educational evaluator can feel overwhelming. Check off items as you gather them:
+            </p>
+            <div id="appointment-checklist-container">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 12: SETTINGS & ACCESSIBILITY
+             ==================================================================== -->
+        <section id="section-settings" class="page-section">
+          <div class="section-header">
+            <h1 class="section-title"><span>⚙️</span> <span>Settings & Universal Accessibility</span></h1>
+            <p class="section-subtitle">Customize every visual and cognitive dimension of NeuroCare. Your settings are automatically saved locally.</p>
+          </div>
+
+          <div class="grid-2">
+            <!-- Theme & Visual Mode -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🎨</span> <span>Theme & Contrast</span></h3>
+              </div>
+              <div class="form-group">
+                <label for="setting-theme-select" class="form-label">Color Theme:</label>
+                <select id="setting-theme-select" class="form-select">
+                  <option value="default">Pastel Blue & Lavender (Default)</option>
+                  <option value="dark">Comfort Dark Mode (Deep Navy)</option>
+                  <option value="high-contrast">High Contrast (Solid Monochrome)</option>
+                  <option value="low-stim">Low-Stimulation Mode (Muted Sepia)</option>
+                  <option value="lavender">Soft Lavender Dream</option>
+                  <option value="mint">Calming Sage Mint</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                  <input type="checkbox" id="setting-reduce-motion-check" style="width: 18px; height: 18px; accent-color: var(--accent-blue);">
+                  <span><strong>Reduce Motion:</strong> Disable all CSS animations and transitions</span>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                  <input type="checkbox" id="setting-reading-ruler-check" style="width: 18px; height: 18px; accent-color: var(--accent-blue);">
+                  <span><strong>Reading Ruler:</strong> Translucent guide following the mouse or arrow keys</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Typography & Sizing -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🔤</span> <span>Typography & Spacing</span></h3>
+              </div>
+              <div class="form-group">
+                <label for="setting-font-size-select" class="form-label">Base Font Size:</label>
+                <select id="setting-font-size-select" class="form-select">
+                  <option value="15px">Small (15px)</option>
+                  <option value="16px" selected>Normal (16px)</option>
+                  <option value="18px">Large (18px)</option>
+                  <option value="20px">Extra Large (20px)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="setting-font-family-select" class="form-label">Font Family:</label>
+                <select id="setting-font-family-select" class="form-select">
+                  <option value="default" selected>System Default (Clean Segoe/San Francisco)</option>
+                  <option value="dyslexic">Dyslexia-Friendly Stack (OpenDyslexic / Lexend / Comic)</option>
+                  <option value="sans">Clean Modern Sans-Serif</option>
+                  <option value="serif">Traditional Serif</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group" style="flex: 1;">
+                  <label for="setting-line-spacing-select" class="form-label">Line Spacing:</label>
+                  <select id="setting-line-spacing-select" class="form-select">
+                    <option value="1.5">Standard (1.5)</option>
+                    <option value="1.8" selected>Relaxed (1.8)</option>
+                    <option value="2.2">Expanded (2.2)</option>
+                  </select>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                  <label for="setting-letter-spacing-select" class="form-label">Letter Spacing:</label>
+                  <select id="setting-letter-spacing-select" class="form-select">
+                    <option value="0.01em" selected>Standard</option>
+                    <option value="0.04em">Wide</option>
+                    <option value="0.08em">Extra Wide</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Language & Local Data Management -->
+          <div class="grid-2" style="margin-top: 24px;">
+            <!-- Language Selector -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🌐</span> <span>Language Selection</span></h3>
+              </div>
+              <div class="form-group">
+                <label for="setting-lang-select" class="form-label">Interface Language:</label>
+                <select id="setting-lang-select" class="form-select">
+                  <option value="en" selected>English (English)</option>
+                  <option value="hi">हिंदी (Hindi)</option>
+                  <option value="bn">বাংলা (Bengali)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                  <input type="checkbox" id="setting-sound-check" checked style="width: 18px; height: 18px; accent-color: var(--accent-mint);">
+                  <span><strong>Audio Feedback:</strong> Enable soft chimes on task completion and plant watering</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Data & Privacy -->
+            <div class="card">
+              <div class="card-header">
+                <h3><span>🔒</span> <span>Local Storage & Data Reset</span></h3>
+              </div>
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                NeuroCare stores your tasks, mood journals, and garden achievements strictly on your browser’s localStorage. No tracking or remote databases.
+              </p>
+              <button class="btn btn-danger" id="btn-reset-user-data">
+                🗑️ Reset All Local Data (With Confirmation)
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ==========================================================================
+           FOOTER
+           ========================================================================== -->
+      <footer class="app-footer" role="contentinfo">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 22px;">🧠</span>
+              <strong style="font-size: 18px;">NeuroCare</strong>
+            </div>
+            <p>
+              Different Minds. Endless Possibilities. Designed with love, science, and sensory empathy to celebrate neurodiversity worldwide.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Quick Pathways</h4>
+            <ul>
+              <li><a href="#dashboard">My Dashboard</a></li>
+              <li><a href="#adhd">ADHD Focus Hub</a></li>
+              <li><a href="#dyslexia">Dyslexia Reading</a></li>
+              <li><a href="#sensory">Autism & Sensory</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Support & Community</h4>
+            <ul>
+              <li><a href="#learning">Learning Centre</a></li>
+              <li><a href="#wellness">Wellness & Breathing</a></li>
+              <li><a href="#portal">Parent & Teacher Portal</a></li>
+              <li><a href="#resources">Professional Resources</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Accessibility</h4>
+            <ul>
+              <li><a href="#settings">Color Themes & Dark Mode</a></li>
+              <li><a href="#settings">Dyslexic Font Option</a></li>
+              <li><a href="#settings">Reading Ruler Guide</a></li>
+              <li><a href="#settings">Language Settings</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026 NeuroCare. Built with Vanilla Web Standards (HTML5, CSS3, Vanilla JS).</div>
+          <div style="font-style: italic;">Empowering every unique way of thinking.</div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: SENSORY ESCAPE (FULLSCREEN RELAXATION)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="modal-sensory-escape-container" role="dialog" aria-modal="true" aria-labelledby="sensory-escape-title">
+    <div class="modal-card modal-sensory-escape">
+      <div class="modal-header">
+        <h3 id="sensory-escape-title">🌌 Sensory Escape Retreat</h3>
+        <button class="modal-close-btn" id="btn-close-sensory-escape" aria-label="Close Sensory Escape">✕</button>
+      </div>
+      <p style="font-size: 15px; color: var(--text-secondary); margin-bottom: 24px;">
+        Take a moment to close extra tabs, step away from bright fluorescent lights, and breathe softly with our calming audio and visual pace.
+      </p>
+
+      <div style="margin-bottom: 28px;">
+        <div class="breathing-circle-wrapper" style="width: 180px; height: 180px;">
+          <div class="breathing-circle inhale" style="width: 120px; height: 120px;">
+            <span>Breathe</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <button class="btn btn-secondary btn-sm" onclick="Wellness.toggleAmbientTrack('rain')">🌧️ Soft Rain</button>
+        <button class="btn btn-secondary btn-sm" onclick="Wellness.toggleAmbientTrack('ocean')">🌊 Gentle Waves</button>
+        <button class="btn btn-secondary btn-sm" onclick="Wellness.toggleAmbientTrack('binaural')">🔔 432Hz Tone</button>
+        <button class="btn btn-mint btn-sm" onclick="document.getElementById('modal-sensory-escape-container').classList.remove('active')">✓ Feeling Centered</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: NEW COMMUNITY POST FORM
+       ========================================================================== -->
+  <div class="modal-backdrop" id="modal-community-post" role="dialog" aria-modal="true" aria-labelledby="community-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="community-modal-title">💬 Share with NeuroCare Community</h3>
+        <button class="modal-close-btn" id="btn-close-community-modal" aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="community-new-post-form">
+        <div class="form-row">
+          <div class="form-group" style="flex: 1;">
+            <label for="post-author-input" class="form-label">Your Name or Pseudonym:</label>
+            <input type="text" id="post-author-input" class="form-input" placeholder="e.g. Alex M. or Curious Owl">
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="post-role-input" class="form-label">Role / Identifier:</label>
+            <input type="text" id="post-role-input" class="form-input" placeholder="e.g. Student, Parent, Teacher">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="post-category-select" class="form-label">Category:</label>
+          <select id="post-category-select" class="form-select">
+            <option value="adhd">⚡ ADHD Focus & Life Hacks</option>
+            <option value="dyslexia">📖 Dyslexia Triumphs & Reading Tips</option>
+            <option value="sensory">🧩 Autism & Sensory Regulation</option>
+            <option value="parent-teacher">🎓 Parent & Teacher Support</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="post-title-input" class="form-label">Post Title:</label>
+          <input type="text" id="post-title-input" class="form-input" placeholder="e.g. A visual timer trick that actually helped me..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="post-content-textarea" class="form-label">Your Story or Strategy:</label>
+          <textarea id="post-content-textarea" class="form-textarea" rows="4" placeholder="Share your insight with kindness and empathy..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('modal-community-post').classList.remove('active')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Post to Community 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT MODULES (Vanilla JS only)
+       ========================================================================== -->
+  <script src="js/accessibility.js"></script>
+  <script src="js/adhd.js"></script>
+  <script src="js/dyslexia.js"></script>
+  <script src="js/learning.js"></script>
+  <script src="js/wellness.js"></script>
+  <script src="js/assistant.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

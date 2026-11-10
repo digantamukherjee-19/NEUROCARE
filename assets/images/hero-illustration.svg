@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 350" width="500" height="350">
+  <defs>
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dbeafe" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#ede9fe" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#d8f3dc" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Soft Aura -->
+  <circle cx="250" cy="175" r="140" fill="url(#bgGlow)" />
+  <!-- Stylized Head Silhouette & Thought Constellation -->
+  <path d="M220 100c-40 0-70 30-70 70 0 25 12 45 30 58v32h80v-32c18-13 30-33 30-58 0-40-30-70-70-70z" fill="#ffffff" stroke="#9d8df1" stroke-width="3" />
+  <!-- Sparkling Neurons & Ideas -->
+  <circle cx="200" cy="140" r="8" fill="#5b8fb9" />
+  <circle cx="240" cy="130" r="10" fill="#52b788" />
+  <circle cx="230" cy="170" r="7" fill="#f4a261" />
+  <circle cx="180" cy="175" r="9" fill="#9d8df1" />
+  <line x1="200" y1="140" x2="240" y2="130" stroke="#5b8fb9" stroke-width="2" stroke-dasharray="3,3" />
+  <line x1="240" y1="130" x2="230" y2="170" stroke="#52b788" stroke-width="2" stroke-dasharray="3,3" />
+  <line x1="230" y1="170" x2="180" y2="175" stroke="#f4a261" stroke-width="2" stroke-dasharray="3,3" />
+  <!-- Leaves / Nature element symbolizing growth -->
+  <path d="M260 210c15-20 40-10 35 15-18 5-30-5-35-15z" fill="#74c69d" />
+  <path d="M180 210c-15-20-40-10-35 15 18 5 30-5 35-15z" fill="#52b788" />
+</svg>
