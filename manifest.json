@@ -1,0 +1,31 @@
+{
+  "name": "NeuroCare – Inclusive Learning & Support",
+  "short_name": "NeuroCare",
+  "description": "Sensory-friendly web companion supporting people with ADHD, dyslexia, autism, and diverse learning styles.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f7fb",
+  "theme_color": "#5b8fb9",
+  "categories": ["education", "health", "productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

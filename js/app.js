@@ -252,6 +252,13 @@ var App = window.App = (function () {
     // Sync cross-module home/dashboard summaries after init
     updateHomeWelcomeProgress();
     updateDashboardAll();
+    registerServiceWorker();
+  }
+
+  function registerServiceWorker() {
+    if ('serviceWorker' in navigator && (window.location.protocol === 'http:' || window.location.protocol === 'https:')) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
   }
 
   // --- SPA ROUTING ---
@@ -316,9 +323,26 @@ var App = window.App = (function () {
   function setupMobileMenu() {
     const btn = document.getElementById('btn-mobile-menu');
     const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
     if (!btn || !sidebar) return;
 
-    btn.addEventListener('click', () => sidebar.classList.toggle('mobile-open'));
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', () => {
+      const open = sidebar.classList.toggle('mobile-open');
+      if (backdrop) backdrop.classList.toggle('active', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closeMobileMenu);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('mobile-open')) {
+        closeMobileMenu();
+      }
+    });
+
     document.addEventListener('click', (e) => {
       if (sidebar.classList.contains('mobile-open') && !sidebar.contains(e.target) && !btn.contains(e.target)) {
         closeMobileMenu();
@@ -328,7 +352,11 @@ var App = window.App = (function () {
 
   function closeMobileMenu() {
     const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const btn = document.getElementById('btn-mobile-menu');
     if (sidebar) sidebar.classList.remove('mobile-open');
+    if (backdrop) backdrop.classList.remove('active');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
   }
 
   // --- HOME: GLOBAL SEARCH & DYNAMIC PROGRESS ---

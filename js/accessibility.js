@@ -202,6 +202,12 @@ var Accessibility = window.Accessibility = (function () {
     else if (theme === 'lavender') body.classList.add('theme-lavender');
     else if (theme === 'mint') body.classList.add('theme-mint');
 
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) {
+      const themeColors = { dark: '#0f172a', 'high-contrast': '#000000', 'low-stim': '#e5e0d8', lavender: '#7c6ae6', mint: '#3d9970' };
+      themeMeta.setAttribute('content', themeColors[theme] || '#5b8fb9');
+    }
+
     const select = document.getElementById('setting-theme-select');
     if (select) select.value = theme;
 
