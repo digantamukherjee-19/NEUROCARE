@@ -1,77 +1,100 @@
 /**
  * NeuroCare - AI Assistant Demonstration Module
- * A rule-based educational assistant simulator for neurodivergent learning strategies,
- * executive function tips, dyslexia reading methods, and sensory accommodations.
- * 
- * NOTE: Clearly labeled as a non-diagnostic educational demonstration.
+ * A clearly labeled, rule-based educational demonstration chatbot providing study strategies,
+ * sensory grounding tips, and neurodivergent learning accommodations.
+ * NOTE: Does NOT connect to external AI APIs or provide medical diagnoses.
  */
 
-const Assistant = (function () {
+var Assistant = window.Assistant = (function () {
   'use strict';
 
-  // Rule-based knowledge base matching keywords
+  const STORAGE_KEY_CHAT = 'neurocare_assistant_history';
+
   const knowledgeBase = [
     {
-      keywords: ['paralysis', 'start', 'stuck', 'begin', 'initiat', 'adhd start'],
-      response: `When experiencing ADHD task paralysis, the brain often perceives the task as an enormous, overwhelming wall. Here is a proven 3-step jumpstart:
-1. **The 2-Minute Promise:** Tell yourself you only have to work for 120 seconds. If you still want to stop, you can. Usually, crossing the initiation threshold is the hardest part.
-2. **Body Doubling:** Work alongside a friend, family member, or study stream. Having another person nearby can help anchor focus.
-3. **Use our "Break It Down" tool:** Enter your large task in the ADHD Support section to split it into bite-sized 5-minute micro-actions!`
+      keywords: ['paralysis', 'start', 'stuck', 'begin', 'initiat', 'procrastinat'],
+      response: `When experiencing ADHD task paralysis, the brain perceives the task as a massive wall. Try this 3-step jumpstart:
+1. **The 2-Minute Promise:** Commit to working for just 120 seconds. Crossing the starting line is the hardest part.
+2. **Body Doubling:** Sit near a friend or study stream so gentle social presence anchors focus.
+3. **Break It Down:** Open our **ADHD Support** tab and run your task through the **Break It Down** tool to create 5-minute steps!`
     },
     {
-      keywords: ['dyslexia', 'reading fatigue', 'tired', 'blur', 'crowd'],
-      response: `Reading fatigue with dyslexia happens because the brain works extra hard to decode phonemes and track lines. Try these gentle accommodations:
-- **Change Background Color:** Switch from bright white to a soft mint, cream, or peach background in our Dyslexia Support tool.
-- **Activate Reading Ruler:** Toggle our reading guide bar (Alt + Arrow Keys or toolbar button) to isolate one line at a time.
-- **Listen While Reading:** Use the "Read It for Me" button to let the browser read aloud while you follow along visually.`
+      keywords: ['dyslexia', 'reading fatigue', 'tired', 'blur', 'crowd', 'read'],
+      response: `Reading fatigue with dyslexia occurs when visual crowding strains tracking. Here is what helps right away:
+- **Overlay Tint:** Switch to warm yellow, mint, or peach in the **Dyslexia Support** toolbar.
+- **Reading Ruler:** Toggle our Reading Ruler (` + '`Alt + Up/Down`' + `) to isolate one line at a time.
+- **Read It for Me:** Press **Read Aloud** to hear spoken narration with word-by-word highlighting.`
     },
     {
-      keywords: ['sensory', 'overload', 'loud', 'meltdown', 'lights', 'crowd'],
-      response: `Sensory overload occurs when sensory input exceeds your nervous system's capacity to process it. To reset:
-1. **Reduce Stimulation:** Dim screen brightness, wear noise-cancelling headphones, or retreat to a quiet, dimly lit corner.
-2. **Engage Deep Pressure:** A weighted lap pad, deep breathing (like the Box Breathing in our Wellness Centre), or wrapping yourself in a blanket can help calm the autonomic nervous system.
-3. **Use AAC Expression:** Check our "Express Without Words" communication board if speaking feels too demanding right now.`
+      keywords: ['sensory', 'overload', 'loud', 'meltdown', 'lights', 'crowd', 'overwhelm'],
+      response: `When sensory input exceeds your nervous system's capacity:
+1. **Reduce Input:** Activate **Low-Stimulation Mode** or click **Sensory Escape** in the top header.
+2. **Steady Breathing:** Try 2 cycles of Box Breathing in the **Wellness Centre**.
+3. **Express Without Words:** Use our visual **AAC Communication Board** in **Autism & Sensory** if talking feels exhausting.`
     },
     {
-      keywords: ['pomodoro', 'timer', 'focus', 'interval', 'time'],
-      response: `The Pomodoro Technique is great for ADHD brains because it transforms indefinite, open-ended time into short, concrete blocks.
-- **Standard interval:** 25 minutes of single-task focus followed by a 5-minute break.
-- **ADHD tip:** If 25 minutes feels too long, start with 15 minutes! The key is celebrating when the timer dings and honoring the break without guilt.`
+      keywords: ['pomodoro', 'timer', 'focus', 'interval', 'time', 'blindness'],
+      response: `The Pomodoro Technique makes invisible time concrete:
+- **25m Focus + 5m Break:** Keep the visual circular progress ring visible in **ADHD Support**.
+- **Flexible Intervals:** If 25 minutes feels too steep, set a short **Study Planner** block or a 10-minute **Reminder** first!`
     },
     {
-      keywords: ['accommodation', 'school', 'teacher', 'work', 'boss', 'college'],
-      response: `Requesting accommodations is a proactive step toward fairness. Effective accommodations include:
-- **Written instructions** rather than only spoken directions.
-- **Permission to use noise-cancelling headphones** in open study/work spaces.
-- **Extra time (25% - 50%)** on timed exams or extended project checkpoints.
-- Check our **Parent & Teacher Portal** for a comprehensive accommodations checklist you can view and print!`
+      keywords: ['study', 'plan', 'organiz', 'exam', 'homework', 'math'],
+      response: `Neuro-friendly study planning tips:
+- **Visual Math:** Use our dot-array math exercises in the **Learning Centre** to build concrete number sense.
+- **Active Recall:** Flip through **3D Flashcards** or create your own custom flashcards.
+- **Chunk Deadlines:** Track due dates in the **Assignment Tracker** and pair each session with a **Study Planner** slot.`
     },
     {
-      keywords: ['garden', 'plant', 'achievement', 'grow'],
-      response: `The **Achievement Garden** is NeuroCare’s positive reinforcement feature! Whenever you complete a task, finish a quiz, practice breathing, or use the dyslexia reader, you earn sunshine and water points. Watch your seed sprout into a blooming flower and grand blossom tree!`
+      keywords: ['accommodation', 'school', 'teacher', 'work', 'boss', 'college', 'iep', 'parent'],
+      response: `Helpful accommodations to request include:
+- **Written step-by-step instructions** alongside verbal explanations.
+- **Noise-cancelling headphones** or a quiet testing/workspace option.
+- **Extended time (25%–50%)** and text-to-speech readers.
+Visit our **Parent & Teacher Portal** to view and download the full **Accommodations Matrix**!`
     },
     {
-      keywords: ['diagnos', 'cure', 'medical', 'medicine', 'doctor'],
-      response: `⚠️ **Important Notice:** NeuroCare and this assistant provide educational and lifestyle organization tools only. We do not provide medical diagnosis, treatment, or clinical prescriptions. If you are seeking an official evaluation, please consult our **Professional Resources** section to find qualified clinical psychologists, neurologists, and speech therapists in your region.`
+      keywords: ['sleep', 'bed', 'insomnia', 'night', 'rest'],
+      response: `Neurodivergent brains often struggle to transition from daytime stimulation to sleep. Try visiting our **Wellness Centre → Sleep & Routine Tracker** to check off a gentle wind-down routine (dimming lights, warm mode, quiet audio).`
+    },
+    {
+      keywords: ['garden', 'plant', 'achievement', 'grow', 'points'],
+      response: `The **Achievement Garden** grows whenever you complete tasks, finish quizzes, log mood check-ins, or practice breathing! Head to **My Dashboard** to water your plant and watch it evolve from a seed into a flourishing tree.`
+    },
+    {
+      keywords: ['diagnos', 'cure', 'medical', 'medicine', 'doctor', 'prescrib', 'therapy'],
+      response: `⚠️ **Important Notice:** This Assistant is an educational demonstration chatbot. NeuroCare does **not** diagnose, treat, or provide medical advice. For clinical evaluations, please browse our **Professional Resources** directory to learn which qualified specialists (psychologists, neurologists, SLPs, OTs) can help.`
     }
   ];
 
-  const defaultGreeting = `Hello! I'm your NeuroCare Learning Companion (Demo). I can share evidence-informed tips on study organization, ADHD focus strategies, dyslexia reading adjustments, and sensory calming techniques. What would you like to explore today?`;
+  const defaultGreeting = `Hello! I'm your NeuroCare Learning Companion (**Rule-Based Educational Demo**). I don't connect to an external AI API or diagnose medical conditions, but I can share practical tips for ADHD focus, dyslexia reading, study planning, and sensory balance. What would you like to try?`;
 
   const fallbackResponses = [
-    `That is a thoughtful question! While I am a rule-based demonstration assistant, I suggest exploring our **ADHD Support** section for task chunking, or our **Wellness Centre** for soothing sensory breathing exercises.`,
-    `Great topic! For personalized techniques, try testing different visual styles in our **Learning Centre** or using our **Reading Ruler** in the Dyslexia section.`,
-    `Neurodivergent brains thrive with concrete tools and predictable structures. Feel free to ask about "ADHD paralysis", "Dyslexia reading fatigue", or "Sensory overload"!`
+    `Great question! Because I am a local rule-based demonstration assistant, I work best with keywords like **"ADHD paralysis"**, **"dyslexia reading"**, **"sensory overload"**, **"study plan"**, **"Pomodoro"**, **"sleep"**, or **"accommodations"**.`,
+    `Try exploring our **ADHD Support** tab for micro-step task breaking, **Dyslexia Support** for spoken audio reading, or **Wellness Centre** for guided breathing!`
   ];
 
   let messages = [];
 
   function init() {
-    messages = [
-      { sender: 'bot', text: defaultGreeting, time: 'Just now' }
-    ];
+    loadHistory();
     renderMessages();
     bindEvents();
+  }
+
+  function loadHistory() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_CHAT);
+      messages = saved ? JSON.parse(saved) : [{ sender: 'bot', text: defaultGreeting, time: 'Just now' }];
+    } catch (e) {
+      messages = [{ sender: 'bot', text: defaultGreeting, time: 'Just now' }];
+    }
+  }
+
+  function saveHistory() {
+    try {
+      localStorage.setItem(STORAGE_KEY_CHAT, JSON.stringify(messages.slice(-40)));
+    } catch (e) {}
   }
 
   function renderMessages() {
@@ -80,9 +103,9 @@ const Assistant = (function () {
 
     container.innerHTML = messages.map(m => `
       <div class="chat-bubble ${m.sender}">
-        ${m.sender === 'bot' ? '<strong>🤖 NeuroCare Companion:</strong><br>' : '<strong>You:</strong><br>'}
+        ${m.sender === 'bot' ? '<strong>🤖 NeuroCare Companion (Demo):</strong><br>' : '<strong>You:</strong><br>'}
         ${formatMarkdownText(m.text)}
-        <div style="font-size: 10px; opacity: 0.6; margin-top: 4px; text-align: right;">${m.time}</div>
+        <div style="font-size: 10px; opacity: 0.65; margin-top: 4px; text-align: right;">${escapeHtml(m.time)}</div>
       </div>
     `).join('');
 
@@ -92,15 +115,13 @@ const Assistant = (function () {
   function sendMessage(userText) {
     if (!userText || !userText.trim()) return;
 
-    // Add user message
     messages.push({
       sender: 'user',
       text: userText.trim(),
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     });
+    saveHistory();
     renderMessages();
-
-    // Show simulated typing indicator
     showTypingIndicator();
 
     setTimeout(() => {
@@ -111,35 +132,29 @@ const Assistant = (function () {
         text: botReply,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       });
+      saveHistory();
       renderMessages();
-
       if (window.Accessibility) window.Accessibility.playSound('click');
-    }, 600);
+    }, 550);
   }
 
   function generateReply(text) {
     const lower = text.toLowerCase();
-
     for (const entry of knowledgeBase) {
       for (const kw of entry.keywords) {
-        if (lower.includes(kw)) {
-          return entry.response;
-        }
+        if (lower.includes(kw)) return entry.response;
       }
     }
-
-    // Fallback
     return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
   }
 
   function showTypingIndicator() {
     const container = document.getElementById('assistant-messages-container');
     if (!container) return;
-
     const typingDiv = document.createElement('div');
     typingDiv.id = 'chat-typing-indicator';
     typingDiv.className = 'chat-bubble bot';
-    typingDiv.innerHTML = `<em>NeuroCare Assistant is typing...</em>`;
+    typingDiv.innerHTML = `<em>Thinking (searching local knowledge base)...</em>`;
     container.appendChild(typingDiv);
     container.scrollTop = container.scrollHeight;
   }
@@ -150,7 +165,6 @@ const Assistant = (function () {
   }
 
   function formatMarkdownText(raw) {
-    // Basic formatting for bold and lists
     let formatted = escapeHtml(raw);
     formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     formatted = formatted.replace(/\*(.*?)\*/g, '<em>$1</em>');
@@ -159,10 +173,11 @@ const Assistant = (function () {
   }
 
   function clearChat() {
-    messages = [
-      { sender: 'bot', text: defaultGreeting, time: 'Just now' }
-    ];
+    if (!window.confirm('Clear the assistant conversation history?')) return;
+    messages = [{ sender: 'bot', text: defaultGreeting, time: 'Just now' }];
+    saveHistory();
     renderMessages();
+    if (window.App && window.App.showToast) window.App.showToast('Chat history cleared.');
   }
 
   function bindEvents() {
@@ -171,17 +186,17 @@ const Assistant = (function () {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const input = document.getElementById('assistant-chat-input');
-        if (input && input.value) {
+        if (input && input.value.trim()) {
           sendMessage(input.value);
           input.value = '';
+          input.focus();
         }
       });
     }
 
-    // Suggested chips
     document.querySelectorAll('.suggestion-chip').forEach(chip => {
       chip.addEventListener('click', (e) => {
-        const text = e.target.textContent.replace(/^[💡❓⚡]\s*/, '');
+        const text = e.currentTarget.textContent.replace(/^[💡📖⚡⏱️🎓🛌]\s*/, '');
         sendMessage(text);
       });
     });
@@ -192,7 +207,11 @@ const Assistant = (function () {
 
   function escapeHtml(str) {
     if (!str) return '';
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   return {

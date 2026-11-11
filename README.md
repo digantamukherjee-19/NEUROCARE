@@ -1,208 +1,228 @@
 # NeuroCare – Different Minds. Endless Possibilities.
 
-> An inclusive, sensory-friendly web platform engineered to support individuals with ADHD, dyslexia, autism, dyscalculia, and diverse neurological learning profiles.
+> An inclusive, sensory-friendly learning and everyday support website built with pure **HTML5, CSS3, and Vanilla JavaScript** for people with ADHD, dyslexia, autism, dyscalculia, and diverse neurodevelopmental profiles.
 
-**Repository Link:** [https://github.com/digantamukherjee-19/NEUROCARE](https://github.com/digantamukherjee-19/NEUROCARE)  
+**Repository:** [https://github.com/digantamukherjee-19/NEUROCARE](https://github.com/digantamukherjee-19/NEUROCARE)  
 **Author & Maintainer:** Diganta Mukherjee
 
 ---
 
 ## 1. Project Overview
 
-**NeuroCare** is a modern, accessible web companion designed from the ground up for neurodivergent individuals, educators, and families. Rather than adopting a clinical or diagnostic tone, NeuroCare focuses on everyday cognitive ergonomics, executive function empowerment, visual pacing, and sensory balance.
+**NeuroCare** is a client-side web companion created to make digital learning, daily planning, reading, and sensory self-regulation calmer and easier to navigate. Instead of using clinical or hospital styling, the interface uses a gentle pastel palette, generous spacing, rounded cards, and interactive browser tools tailored to executive function, visual comfort, and emotional pacing.
 
-### Who NeuroCare Supports:
-- **People with ADHD:** Minimizes task initiation paralysis, provides visual time tracking via Pomodoro techniques, and offers atomic task chunking.
-- **Individuals with Dyslexia:** Offers visual accommodation tools including high-legibility fonts, customizable background tints, line-height/letter-spacing sliders, text-to-speech with word tracking, and bionic saccadic reading aids.
-- **Autistic & Sensory-Sensitive Users:** Provides low-stimulation interface filters, augmentative and alternative communication (AAC) tiles, structured visual schedules, and predictable social narratives.
-- **Parents, Teachers & Allies:** Supplies evidence-based classroom accommodation tips, home routine strategies, and printable meeting checklists.
+### Who NeuroCare Supports
+- **Individuals with ADHD:** Reduces task initiation friction with micro-step task decomposition, editable checklists, visual Pomodoro timing, study blocks, and reminders.
+- **Readers with Dyslexia:** Provides real-time typography and spacing sliders, background overlay tints, reading rulers, selective text highlighting, Reading-Friendly distraction-free focus mode, and Web Speech API narration.
+- **Autistic & Sensory-Sensitive Learners:** Includes low-stimulation and reduced-motion preferences, brightness dimming, editable picture-assisted daily routines, emotion identification guides, interactive social stories, silent break timers, and a customizable AAC communication board.
+- **Parents, Teachers & Allies:** Offers home and classroom accommodation checklists, printable and `.txt`-downloadable support guides, live synced local activity overviews, and structured observation logging.
 
 ---
 
-## 2. Key Modules & Features
+## 2. Key Features & Modules
 
-### Core Modules:
-1. **Home:** Welcoming introduction, four core condition pillars, feature spotlights, and daily inspirational thoughts.
-2. **My Dashboard:** Real-time date display, daily cognitive metrics (tasks completed, focus minutes logged, current mood), and the interactive **Achievement Garden**.
-3. **ADHD Support:** Daily priority to-do list, Pomodoro circular countdown timer with Web Audio chime, assignment tracker, and milestone achievement badges.
-4. **Dyslexia Support:** Multi-feature reading canvas with real-time text customization, native Web Speech text-to-speech, syllable/bionic formatters, RSVP speed reading practice, and vocabulary glossary.
-5. **Learning Centre:** Modality preferences, interactive 3D flip flashcards, mastery quizzes with rationales, memory-matching pair games, and concrete visual math counters.
-6. **Wellness Centre:** Non-clinical emotional self-regulation, emoji mood check-ins with 7-day history, guided de-clutter journal, 4-4-4-4 Box Breathing visualizer, and synthetic ambient relaxation audio.
-7. **Autism & Sensory Support:** Visual daily routine timeline, sensory comfort switches (low-stimulation, reduced motion), and body sensation mapping.
-8. **AI Assistant (Demo):** Rule-based educational guide answering questions regarding study strategies, executive dysfunction, and school accommodations.
-9. **Community Hub (Demo):** Demonstrative peer-support feed with category filters, keyword search, helpfulness upvotes, and post creation.
-10. **Parent & Teacher Portal:** Home routine tips, classroom strategies, and an accommodations reference matrix with print support.
-11. **Professional Resources:** Directory describing medical and developmental specialists, support organizations, and an interactive appointment preparation checklist.
-12. **Settings & Accessibility:** Six color themes, typography controls, reading ruler toggle, audio feedback settings, data reset tools, and multi-language support (English, Hindi, Bengali).
-
-### The Six Signature Features:
-- **A. Break It Down:** Decomposes intimidating tasks (e.g., *"Clean bedroom"*, *"Write essay"*) into sequenced 5-minute atomic steps.
-- **B. Read It for Me:** Browser-native speech synthesis that highlights words in real time as they are spoken.
-- **C. Achievement Garden:** Gamified SVG plant visualization that grows across five distinct biological stages as users complete learning, wellness, and focus tasks.
-- **D. Express Without Words:** Interactive AAC communication board with spoken audio output for non-speaking or overwhelmed moments.
-- **E. My Learning Style:** Dynamically adapts advice according to visual, auditory, reading/writing, or kinesthetic preferences.
-- **F. Sensory Escape:** Full-screen sensory reset with guided breathing rhythms and synthetic ambient soundscapes.
+### 12 Interactive Sections
+1. **Home:** Dynamic progress summary strip synced with user activity, global tool and resource search bar, quick-access module cards, 4 neurodevelopmental pillars, inspirational messages, and informational About/Privacy dialogs.
+2. **My Dashboard:** Personalized greeting, customizable dashboard widget visibility toggles, live bar charts tracking tasks, learning milestones, and mood check-ins, plus the 5-stage SVG **Achievement Garden**.
+3. **ADHD Support:**
+   - Daily To-Do list with add, inline edit (`window.prompt`), completion toggle, priority badges, and delete confirmation.
+   - **Break It Down:** Task decomposer generating 5-minute actionable micro-steps for single or bulk import into your To-Do list.
+   - **Pomodoro Focus Timer:** Start, pause, resume, and reset controls (`25m Focus` / `5m Short Break` / `15m Long Break`), optional session topic naming, manual focus logging, focus session history, progress report metrics, and milestone badges.
+   - **Study Planner, Assignment Tracker & Reminders:** Add/edit/complete study blocks, cycle assignment status (`Not Started` -> `In Progress` -> `Completed`), and schedule timed browser toast + chime reminders.
+4. **Dyslexia Support:**
+   - Font selector (`OpenDyslexic` fallback stack, `Verdana`, clean sans-serif, serif), font size slider, line-height slider, letter-spacing slider, and word-spacing slider.
+   - Pastel overlay tint swatches + custom text color picker, mouse/keyboard-guided **Reading Ruler**, and clickable yellow/mint/pink text highlighting tools.
+   - **Reading-Friendly Mode** (hides sidebar/header/footer distractions) and **Web Speech API** Text-to-Speech (Play, Pause, Resume, Stop, speech speed slider, voice selector, and active word highlighting).
+   - Rule-based **Text Simplifier (Demo)** with Restore button, **RSVP Speed Pacer**, multiple-choice **Reading Practice**, and a custom **Vocabulary Builder** with audio pronunciation.
+5. **Learning Centre:**
+   - **"My Learning Style" Modality Selector** (`Visual`, `Audio`, `Reading`, `Interactive`).
+   - **3D Interactive Flashcards** across Science, Social Cues, Life Skills, and custom user-created decks.
+   - **Leveled Quizzes** (`Easy`, `Medium`, `Hard`) with instant feedback and star rewards, plus **Leveled Memory Match** (4, 6, or 8 pairs).
+   - **Visual Mathematics Exercises** with colored dot builders, **Reading Context Practice**, **Attention Target Finder** mini-game, and **Audio Lessons** with transcripts.
+6. **Wellness Centre:**
+   - **Mood Check-In Tracker** with intensity slider, optional reflection note, 7-entry vertical trend chart, and confirmed entry deletion.
+   - **Guided Reflection Journal** supporting create, edit, and confirmed delete.
+   - **Guided Breathing Visualizer** (Box `4-4-4-4` and `4-7-8` relaxation patterns with live phase timer) and **5-4-3-2-1 Sensory Grounding Walkthrough**.
+   - **Positive Affirmations** generator + custom affirmation saver, interactive **Break Reminder Timer**, browser-synthesized **Ambient Soundscapes** (soft rain, gentle ocean waves, 432Hz calm tone), and a **Sleep & Evening Routine Tracker**.
+7. **Autism & Sensory Support:**
+   - **Customizable Visual Routine Builder** (add, edit, complete, and confirmed delete schedule blocks).
+   - Quick toggles for **Low-Stimulation Mode**, **Reduced Motion**, and a screen **Brightness Dimmer** slider (`50%–100%`).
+   - **Express Without Words (AAC Board)** with spoken phrases and custom AAC tile creation, **Emotion Identification Cards**, **Interactive Social Stories** across 3 common scenarios, and a **Quiet Sensory Break Timer**.
+8. **AI Learning Assistant (Demo):** Local rule-based educational guide responding to questions about ADHD paralysis, dyslexia fatigue, study focus, math strategies, sleep, and accommodations, with persisted local conversation history.
+9. **Community Hub (Local Demo):** Peer-style story and tip showcase with category filters, keyword search, upvote toggles, inline comment replies, confirmed deletion of user-created posts, and an **Anonymous Question** posting option.
+10. **Parent & Teacher Portal:** Tabbed hub covering Home Routines, Classroom Strategies, School Accommodations Reference, live **Student Progress Overview** (synced from browser `localStorage`), interactive accommodation checklist, persisted observation notes log, `.txt` guide download, and print view.
+11. **Professional Resources:** Searchable and type-filterable informational directory covering specialist roles and support organizations, clearly labeled sample listing entry, plus a customizable, downloadable (`.txt`), and printable **Appointment Preparation Checklist**.
+12. **Settings & Accessibility:** Live switching between Daylight Pastel, Dark Mode, High Contrast, Low Stimulation, font stacks, spacing selects, Reading Ruler toggle, gentle Web Audio feedback toggle, interface translation (**English**, **Hindi / हिंदी**, **Bengali / বাংলা**), and confirmed reset controls.
 
 ---
 
 ## 3. Technologies Used
 
-NeuroCare is built strictly with vanilla web standards without external dependencies or heavy frontend frameworks:
-- **HTML5:** Semantic architecture, accessible forms, ARIA landmarks, and SVG vectors.
-- **CSS3:** Responsive CSS Grid and Flexbox, CSS custom properties (variables), subtle transitions, and custom media queries.
-- **Vanilla JavaScript (ES6+):** Modular, object-oriented state managers and event dispatchers.
-- **Web Speech API:** Browser-native `SpeechSynthesis` for text-to-speech reading and AAC voice assistance.
-- **Web Audio API:** Programmatic audio synthesis (filtered noise for rain, modulated waves, 432 Hz sine tone) running 100% offline.
-- **Browser LocalStorage:** Local persistence for tasks, assignments, mood records, and settings.
+NeuroCare runs directly in the browser using zero third-party frameworks or runtime servers:
+- **HTML5:** Semantic landmarks, ARIA roles/labels, `<svg>` graphics, and accessible form controls.
+- **CSS3:** Custom CSS properties for multi-theme palettes, CSS Grid/Flexbox responsive layouts, subtle animations respecting `prefers-reduced-motion`, and print stylesheets.
+- **Vanilla JavaScript (ES6+):** Modular IIFE state controllers, DOM rendering, event delegation, and `localStorage` persistence.
+- **Browser APIs:** `window.speechSynthesis` (Web Speech API), `AudioContext` / `Web Audio API` (offline soundscapes and gentle chimes), `Blob` / `URL.createObjectURL` (`.txt` exports), and `window.localStorage`.
 
 ---
 
-## 4. Screenshots & Visual Interface
+## 4. Screenshots
 
-| Section | Preview |
+| Module | Preview Placeholder |
 | :--- | :--- |
-| **Hero & Overview** | *[ Screenshot Placeholder: NeuroCare Pastel Hero & Pillars ]* |
-| **ADHD Productivity Hub** | *[ Screenshot Placeholder: Pomodoro Focus Ring & Break It Down ]* |
-| **Dyslexia Reading Workspace** | *[ Screenshot Placeholder: Color Tints & Reading Ruler ]* |
-| **Achievement Garden** | *[ Screenshot Placeholder: Flourishing Virtual Plant Stage ]* |
-| **Autism & AAC Board** | *[ Screenshot Placeholder: Visual Communication Tiles ]* |
+| **Homepage & Search** | `[ Screenshot Placeholder: NeuroCare Pastel Hero, Pillars & Global Search ]` |
+| **My Dashboard & Garden** | `[ Screenshot Placeholder: Live Activity Charts & 5-Stage SVG Achievement Garden ]` |
+| **ADHD Support** | `[ Screenshot Placeholder: Pomodoro Focus Timer, Study Planner & Break It Down ]` |
+| **Dyslexia Support** | `[ Screenshot Placeholder: Overlay Tints, Word Spacing, Highlights & Reading Ruler ]` |
+| **Autism & Sensory** | `[ Screenshot Placeholder: Visual Routine Builder, AAC Tiles & Social Stories ]` |
 
 ---
 
-## 5. Project Folder Structure
+## 5. Complete Project Folder Structure
 
-```
-NeuroCare/
-│
-├── index.html                   # Single-page application entrypoint
-├── LICENSE                      # Project license file
-├── .gitignore                   # Ignored files (OS, IDE, temp files)
-├── .gitattributes               # Line-ending and text normalization rules
-├── README.md                    # Comprehensive documentation
+```text
+NEUROCARE/
+├── index.html                   # Single-page application shell across all 12 sections & modals
+├── README.md                    # Complete project documentation
+├── LICENSE                      # Project license terms
+├── .gitignore                   # Excludes OS artifacts, editor folders, and caches
+├── .gitattributes               # Repository line-ending configuration
 │
 ├── css/
-│   └── style.css                # Master stylesheet and theme variables
+│   └── style.css                # Themes, variables, component layout, responsive & print CSS
 │
 ├── js/
-│   ├── app.js                   # Main application router and garden controller
-│   ├── adhd.js                  # ADHD to-do, timer, and task decomposition
-│   ├── dyslexia.js              # Reading tools, speech synthesis, and RSVP
-│   ├── learning.js              # Flashcards, quizzes, memory game, and visual math
-│   ├── wellness.js              # Mood tracking, breathing guide, and audio synth
-│   ├── accessibility.js         # Themes, typography, reading ruler, and language
-│   └── assistant.js             # Rule-based educational assistant simulator
+│   ├── accessibility.js         # Themes, typography/spacing controls, ruler, dimmer, i18n, sound
+│   ├── adhd.js                  # Tasks, Break It Down, Pomodoro timer, planner, reminders, badges
+│   ├── dyslexia.js              # Reader styles, TTS controls, highlights, simplifier demo, vocab/RSVP
+│   ├── learning.js              # Learning style, flashcards, quizzes, memory, visual math, attention, audio
+│   ├── wellness.js              # Moods & chart, journal, breathing, grounding, sound synth, sleep & break
+│   ├── sensory.js               # Visual routine builder, AAC board, emotions, social stories, break timer
+│   ├── assistant.js             # Local rule-based AI Assistant demonstration module
+│   └── app.js                   # SPA hash routing, search, dashboard charts/customizer, portal, community, checklist
 │
 └── assets/
-    ├── icons/                   # Local SVG icon vectors
-    │   ├── brain-infinity.svg
-    │   ├── neurocare-logo.svg
-    │   └── plant-sprout.svg
-    └── images/                  # Local SVG illustrations
-        └── hero-illustration.svg
+    ├── icons/
+    │   ├── brain-infinity.svg   # Neurodiversity emblem icon
+    │   ├── neurocare-logo.svg   # Application brand logo
+    │   └── plant-sprout.svg     # Growth sprout vector icon
+    └── images/
+        └── hero-illustration.svg # Homepage hero artwork
 ```
 
 ---
 
 ## 6. Installation & Setup Instructions
 
-Because NeuroCare uses pure browser-supported technologies, no compilation, package managers, or server runtimes are necessary.
+No Node.js, package install steps, or build pipeline are required.
 
-### Option 1: Direct Local Execution
 1. Clone the repository:
    ```bash
    git clone https://github.com/digantamukherjee-19/NEUROCARE.git
    ```
-2. Navigate into the project folder:
+2. Change into the project folder:
    ```bash
    cd NEUROCARE
    ```
-3. Open `index.html` directly in your preferred web browser by double-clicking it or running:
-   - **Windows:** `start index.html`
-   - **macOS:** `open index.html`
-   - **Linux:** `xdg-open index.html`
-
-### Option 2: Using VS Code Live Server
-1. Open the repository folder inside **Visual Studio Code**.
-2. Install the **Live Server** extension (by Ritwick Dey) if not already installed.
-3. Right-click `index.html` in the file explorer and select **"Open with Live Server"**.
-4. The site will launch automatically at `http://127.0.0.1:5500`.
 
 ---
 
-## 7. How to Use Main Features
+## 7. Running Locally
 
-- **Breaking Down a Task:** Go to **ADHD Support**, type any large project into the *Break It Down* bar, and select *Break It Down*. Review the generated micro-steps and choose *Add All to My Tasks*.
-- **Using Text-to-Speech:** Go to **Dyslexia Support**, paste your text into the reading canvas, select your desired overlay tint, and press *Read Aloud*.
-- **Activating the Reading Ruler:** Click the *Ruler* button in the top navigation bar or press `Alt + Down Arrow` / `Alt + Up Arrow` to track your position.
-- **Growing the Achievement Garden:** Complete to-do items, finish learning quizzes, or log wellness reflections to earn water drops and sunshine points. Visit **My Dashboard** to water your plant and view its progress.
-- **Using the AAC Board:** In **Autism & Sensory Support**, tap any visual communication card (e.g., *"Need Quiet Break"*) to display the phrase and speak it aloud.
+### Option A: Open Directly in a Browser
+Open `index.html` directly from your file manager or terminal:
+- **Windows:** `start index.html`
+- **macOS:** `open index.html`
+- **Linux:** `xdg-open index.html`
 
----
-
-## 8. Browser Compatibility
-
-NeuroCare is tested and functional across modern desktop and mobile browsers:
-- **Google Chrome / Chromium:** Version 90+ (Full Web Speech and Web Audio support)
-- **Mozilla Firefox:** Version 88+ (Full layout and Web Audio support; speech voices depend on OS)
-- **Microsoft Edge:** Version 90+ (Full Web Speech and Web Audio support)
-- **Apple Safari (macOS & iOS):** Version 14.1+ (Full responsiveness and Web Audio support)
+### Option B: VS Code Live Server
+1. Open the `NEUROCARE` folder in **Visual Studio Code**.
+2. Install the **Live Server** extension if needed.
+3. Right-click `index.html` and select **Open with Live Server**.
 
 ---
 
-## 9. Accessibility & Customization Options
+## 8. How to Use Main Features
 
-- **WCAG 2.1 AA Compliance:** Color combinations maintain accessible contrast ratios.
-- **Themes:**
-  - *Pastel Default:* Soothing daylight palette.
-  - *Dark Mode:* Reduced glare for photosensitive users.
-  - *High Contrast:* Sharp monochrome outlines for visual impairments.
-  - *Low Stimulation:* Muted sepia with all CSS animations disabled.
-- **Dyslexia Font Support:** Includes fallback stacks for `OpenDyslexic`, `Lexend`, and clean sans-serif typefaces.
-- **Multi-Language Interface:** Dynamic UI translation between **English**, **Hindi (हिंदी)**, and **Bengali (বাংলা)**.
+- **Quick Navigation & Search:** Use the sidebar links on desktop (or the `☰` menu on mobile/tablet) or type a tool keyword (e.g., `pomodoro`, `ruler`, `aac`, `mood`) into the Homepage search bar.
+- **Breaking Down Tasks & Focusing:** Open **ADHD Support**, type an overwhelming task into **Break It Down**, import the 5-minute steps into your To-Do list, and run the **Pomodoro Focus Timer**.
+- **Tailored Reading Experience:** Open **Dyslexia Support**, paste text or load a sample passage, pick a background tint, adjust letter/word/line spacing, select text to highlight, or press **Read Aloud**. Toggle the **Reading Ruler** anytime via the header or `Alt + Up/Down`.
+- **Personalized Dashboard & Growth:** Complete learning exercises, wellness check-ins, and tasks to earn points for your **Achievement Garden**, and open **Customize Layout** in **My Dashboard** to save your preferred name and visible widgets.
+- **Sensory & Communication Tools:** Use **Autism & Sensory Support** to build daily routines, tap **AAC** tiles for speech output, enable **Low-Stimulation** mode, or open **Sensory Escape** from the top bar.
 
 ---
 
-## 10. Privacy & Data Handling
+## 9. Browser Compatibility
 
-- **100% Client-Side:** NeuroCare does not transmit personal data, notes, or entries to external cloud servers.
-- **Local Storage:** All to-do lists, mood check-ins, journal reflections, and garden metrics are saved strictly to the user's browser via `window.localStorage`.
-- **Data Reset:** Users can completely purge all stored entries at any time using the *Reset All Local Data* button in the Settings panel.
-
----
-
-## 11. Limitations & Demo Notices
-
-- **AI Assistant:** Operates as a rule-based demonstration engine utilizing client-side keyword matching. It does not connect to third-party generative AI APIs or provide clinical medical consultations.
-- **Community Section:** Operates as a local demonstration forum. Submitted posts are saved to the user's local storage and are not transmitted to a public server.
-- **Medical Disclaimer:** NeuroCare is an educational and lifestyle accommodation tool. It is not a diagnostic tool or healthcare provider.
+Tested on modern desktop and mobile Chromium/WebKit/Gecko engines:
+- **Microsoft Edge / Google Chrome (90+):** Full support for layout themes, Web Speech API (`SpeechSynthesis`), Web Audio synthesis, `.txt` downloads, and `localStorage`.
+- **Mozilla Firefox (88+):** Full interface themes, Web Audio synthesis, and `localStorage` persistence (`SpeechSynthesis` voice availability depends on OS).
+- **Apple Safari (macOS & iOS 14.1+):** Full responsive layout, Web Audio synthesis (triggered on user gesture), and `localStorage`.
 
 ---
 
-## 12. Future Roadmap
+## 10. Accessibility & Customization Features
 
-- Additional localization options for regional languages.
-- Printable PDF generation for student progress records.
-- Export/import functionality for local JSON data backups.
-- Expanded soundscapes with customizable frequencies.
-
----
-
-## 13. Contributing
-
-Contributions that promote accessibility, cognitive ergonomics, and neuro-inclusion are welcome!
-
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/NewFeature`).
-3. Commit your changes (`git commit -m 'Add NewFeature'`).
-4. Push to the branch (`git push origin feature/NewFeature`).
-5. Open a Pull Request detailing the accessibility benefits of your addition.
+- **4 Visual Themes:** Soft Pastel Daylight, Dark Mode, WCAG High Contrast, and Low-Stimulation Muted Mode.
+- **Typography & Spacing:** Adjustable font family stack (`OpenDyslexic`, `Lexend`, `Verdana`, sans-serif, serif), font size scale, line height, letter spacing, and word spacing.
+- **Sensory Controls:** Reduced-motion toggle (plus OS `prefers-reduced-motion` awareness), screen brightness dimmer (`50%–100%`), Reading Ruler guide, distraction-free Reading-Friendly mode, and optional sound feedback toggle.
+- **Multilingual UI:** Built-in heading and navigation translation switching between **English**, **Hindi (हिंदी)**, and **Bengali (বাংলা)**.
 
 ---
 
-## 14. License
+## 11. Privacy & Local Storage Information
 
-This project is licensed under the terms described in the [LICENSE](LICENSE) file.
+NeuroCare is **100% client-side**. No personal notes, journal reflections, tasks, or usage metrics are uploaded or transmitted to any backend server.
+
+The following `localStorage` keys store your preferences and activity locally on your device:
+- `neurocare_accessibility_prefs` (theme, fonts, spacing, ruler, motion, dimmer, sound, language)
+- `neurocare_dashboard_prefs`, `neurocare_garden_data`
+- `neurocare_adhd_data`, `neurocare_dyslexia_prefs`, `neurocare_dyslexia_custom_vocab`
+- `neurocare_learning_progress`, `neurocare_learning_custom_cards`
+- `neurocare_wellness_data`, `neurocare_sensory_data`, `neurocare_assistant_history`
+- `neurocare_community_posts`, `neurocare_portal_observations`, `neurocare_portal_checklist`, `neurocare_appointment_checklist`
+
+You can clear saved visual preferences or wipe all locally stored user data anytime inside **Settings & Accessibility** (each reset prompts for confirmation).
 
 ---
 
-**(https://github.com/digantamukherjee-19).**
+## 12. Important Limitations & Demo Notices
+
+- **AI Assistant (Demo):** Uses deterministic client-side keyword matching rather than an external generative AI API.
+- **Community Hub (Local Demo):** Preloaded with sample posts; any new posts, questions, upvotes, or comments exist only inside your browser's `localStorage` and are not shared with other users online.
+- **Text Simplifier (Demo):** Uses client-side rule-based word and sentence simplification (`Simplify (Demo)`) with one-click Restore rather than an external NLP model.
+- **Sample Resource Entry:** The *BrightMind Neurodevelopmental Center* entry in **Professional Resources** is explicitly marked as a **Sample / Demo Entry** illustrating directory format and does not represent an actual clinic.
+- **Non-Medical Disclaimer:** NeuroCare is an educational and productivity tool. It does not diagnose, treat, cure, or prevent any medical or neurodevelopmental condition.
+
+---
+
+## 13. Future Improvements
+
+- JSON import/export backup tool to transfer local data across devices cleanly.
+- Additional regional interface translations across all module body copy.
+- Bundled local `.woff2` webfont files (such as OpenDyslexic) for guaranteed offline rendering even when not installed on the OS.
+- Automated PWA offline caching via a Service Worker when hosted over HTTPS.
+
+---
+
+## 14. Contributing
+
+Contributions that enhance accessibility, keyboard ergonomics, localization, or cognitive clarity are welcome:
+1. Fork this repository (`https://github.com/digantamukherjee-19/NEUROCARE`).
+2. Create a feature branch (`git checkout -b feature/accessibility-improvement`).
+3. Keep all additions strictly within HTML5, CSS3, and Vanilla JavaScript (no external frameworks or runtime dependencies).
+4. Open `index.html` and verify zero console errors across desktop and mobile viewports.
+5. Submit a Pull Request describing your changes and accessibility testing.
+
+---
+
+## 15. License
+
+Licensing details for this repository are specified directly in the [LICENSE](LICENSE) file included at the project root.
+
+---
+
+## 16. Author & Repository
+
+- **Author / Maintainer:** Diganta Mukherjee
+- **GitHub Repository:** [https://github.com/digantamukherjee-19/NEUROCARE](https://github.com/digantamukherjee-19/NEUROCARE)
