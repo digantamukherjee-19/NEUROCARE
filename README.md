@@ -2,6 +2,7 @@
 
 > An inclusive, sensory-friendly learning and everyday support website built with pure **HTML5, CSS3, and Vanilla JavaScript** for people with ADHD, dyslexia, autism, dyscalculia, and diverse neurodevelopmental profiles.
 
+**Live Website (GitHub Pages):** [https://digantamukherjee-19.github.io/NEUROCARE/](https://digantamukherjee-19.github.io/NEUROCARE/)  
 **Repository:** [https://github.com/digantamukherjee-19/NEUROCARE](https://github.com/digantamukherjee-19/NEUROCARE)  
 **Author & Maintainer:** Diganta Mukherjee
 
@@ -62,7 +63,7 @@ NeuroCare runs directly in the browser using zero third-party frameworks or runt
 - **HTML5:** Semantic landmarks, ARIA roles/labels, `<svg>` graphics, and accessible form controls.
 - **CSS3:** Custom CSS properties for multi-theme palettes, CSS Grid/Flexbox responsive layouts, subtle animations respecting `prefers-reduced-motion`, and print stylesheets.
 - **Vanilla JavaScript (ES6+):** Modular IIFE state controllers, DOM rendering, event delegation, and `localStorage` persistence.
-- **Browser APIs:** `window.speechSynthesis` (Web Speech API), `AudioContext` / `Web Audio API` (offline soundscapes and gentle chimes), `Blob` / `URL.createObjectURL` (`.txt` exports), and `window.localStorage`.
+- **Browser APIs:** `window.speechSynthesis` (Web Speech API), `AudioContext` / `Web Audio API` (offline soundscapes and gentle chimes), `Blob` / `URL.createObjectURL` (`.txt` exports), `window.localStorage`, and `navigator.serviceWorker` + Web App Manifest (`manifest.json`).
 
 ---
 
@@ -83,7 +84,9 @@ NeuroCare runs directly in the browser using zero third-party frameworks or runt
 ```text
 NEUROCARE/
 ├── index.html                   # Single-page application shell across all 12 sections & modals
-├── README.md                    # Complete project documentation
+├── manifest.json                # Web App Manifest for installable PWA experience
+├── sw.js                        # Service Worker for offline static shell caching
+├── README.md                    # Complete project & deployment documentation
 ├── LICENSE                      # Project license terms
 ├── .gitignore                   # Excludes OS artifacts, editor folders, and caches
 ├── .gitattributes               # Repository line-ending configuration
@@ -99,10 +102,13 @@ NEUROCARE/
 │   ├── wellness.js              # Moods & chart, journal, breathing, grounding, sound synth, sleep & break
 │   ├── sensory.js               # Visual routine builder, AAC board, emotions, social stories, break timer
 │   ├── assistant.js             # Local rule-based AI Assistant demonstration module
-│   └── app.js                   # SPA hash routing, search, dashboard charts/customizer, portal, community, checklist
+│   └── app.js                   # SPA hash routing, search, dashboard charts/customizer, portal, community, SW
 │
 └── assets/
     ├── icons/
+    │   ├── favicon.svg          # Vector browser favicon
+    │   ├── icon-192.png         # 192x192 PWA app icon
+    │   ├── icon-512.png         # 512x512 PWA splash/install icon
     │   ├── brain-infinity.svg   # Neurodiversity emblem icon
     │   ├── neurocare-logo.svg   # Application brand logo
     │   └── plant-sprout.svg     # Growth sprout vector icon
@@ -167,6 +173,8 @@ Tested on modern desktop and mobile Chromium/WebKit/Gecko engines:
 - **Typography & Spacing:** Adjustable font family stack (`OpenDyslexic`, `Lexend`, `Verdana`, sans-serif, serif), font size scale, line height, letter spacing, and word spacing.
 - **Sensory Controls:** Reduced-motion toggle (plus OS `prefers-reduced-motion` awareness), screen brightness dimmer (`50%–100%`), Reading Ruler guide, distraction-free Reading-Friendly mode, and optional sound feedback toggle.
 - **Multilingual UI:** Built-in heading and navigation translation switching between **English**, **Hindi (हिंदी)**, and **Bengali (বাংলা)**.
+- **Responsive Mobile & Touch UX:** Designed down to `320px` width and verified across `320px`, `375px`, `390px`, `430px`, landscape mobile (`667x375`), `768px`, `1024px`, and `1440px` viewports with a collapsible hamburger drawer + backdrop, `44px` minimum mobile touch controls, `16px` mobile inputs to avoid auto-zoom, and synced `<meta name="theme-color">`.
+- **Progressive Web App (PWA):** Includes [manifest.json](manifest.json), PNG/SVG icons, and [sw.js](sw.js) for basic static-shell offline caching when served over HTTPS or localhost. Offline mode preserves local tools and `localStorage` data; external resource links still require an active internet connection.
 
 ---
 
@@ -196,16 +204,34 @@ You can clear saved visual preferences or wipe all locally stored user data anyt
 
 ---
 
-## 13. Future Improvements
+## 13. Deployment & Troubleshooting
+
+### Public Deployment (GitHub Pages)
+NeuroCare is deployed publicly via GitHub Pages at [https://digantamukherjee-19.github.io/NEUROCARE/](https://digantamukherjee-19.github.io/NEUROCARE/).
+
+To deploy or re-deploy a fork via GitHub Pages:
+1. Push all files (`index.html`, `manifest.json`, `sw.js`, `css/`, `js/`, `assets/`) to the `main` branch.
+2. In your GitHub repository, open **Settings → Pages**.
+3. Under **Build and deployment → Source**, choose **Deploy from a branch**, select **`main`** and folder **`/ (root)`**, and click **Save**.
+4. Wait ~1–2 minutes for GitHub Pages to finish building, then open `https://<your-username>.github.io/<repo-name>/`.
+
+### Troubleshooting
+- **Changes not visible immediately after pushing:** Wait ~1 minute for GitHub Pages to finish rebuilding, then perform a hard refresh (`Ctrl + Shift + R` / `Cmd + Shift + R`) or unregister old cached versions in DevTools → Application → Service Workers because `sw.js` caches static shell assets for offline support.
+- **404 errors on CSS/JS/icons on a subpath:** Ensure all links in `index.html`, `manifest.json`, and `sw.js` use relative paths (`./` or no leading `/`), not root-absolute `/` paths.
+- **Service Worker error when opening `index.html` via `file://`:** Service Workers only register over `https://` or `http://localhost` by browser security rules; `js/app.js` checks `location.protocol` and skips registration cleanly when opened directly from disk.
+- **Speech voices unavailable in Text-to-Speech / AAC:** `window.speechSynthesis` relies on operating system speech packs; verify TTS voices are enabled in Windows/macOS/iOS/Android accessibility settings.
+
+---
+
+## 14. Future Improvements
 
 - JSON import/export backup tool to transfer local data across devices cleanly.
 - Additional regional interface translations across all module body copy.
 - Bundled local `.woff2` webfont files (such as OpenDyslexic) for guaranteed offline rendering even when not installed on the OS.
-- Automated PWA offline caching via a Service Worker when hosted over HTTPS.
 
 ---
 
-## 14. Contributing
+## 15. Contributing
 
 Contributions that enhance accessibility, keyboard ergonomics, localization, or cognitive clarity are welcome:
 1. Fork this repository (`https://github.com/digantamukherjee-19/NEUROCARE`).
@@ -216,13 +242,13 @@ Contributions that enhance accessibility, keyboard ergonomics, localization, or 
 
 ---
 
-## 15. License
+## 16. License
 
 Licensing details for this repository are specified directly in the [LICENSE](LICENSE) file included at the project root.
 
 ---
 
-## 16. Author & Repository
+## 17. Author & Repository
 
 - **Author / Maintainer:** Diganta Mukherjee
 - **GitHub Repository:** [https://github.com/digantamukherjee-19/NEUROCARE](https://github.com/digantamukherjee-19/NEUROCARE)

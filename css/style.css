@@ -2725,6 +2725,25 @@ body.reading-friendly-active .reading-stage-card {
     min-width: 0;
     word-break: break-word;
   }
+
+  .aac-card {
+    padding: 14px 8px;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .aac-emoji {
+    font-size: 36px;
+  }
+
+  .aac-text {
+    font-size: 13.5px;
+    overflow-wrap: anywhere;
+  }
+
+  #sensory-story-select {
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 360px) {

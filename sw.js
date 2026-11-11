@@ -5,7 +5,7 @@
  * accessible. External resource links require an internet connection.
  */
 
-const CACHE_NAME = 'neurocare-shell-v1';
+const CACHE_NAME = 'neurocare-shell-v2';
 const SHELL_ASSETS = [
   './',
   './index.html',
